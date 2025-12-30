@@ -27,6 +27,9 @@ class L2P_Trainer:
             num_tasks=args.num_task,
             prompts_per_task=args.prompts_per_task 
         ).to(self.device)
+
+        self.model.prompt_pool.selection_metric = args.selection_metric
+        self.model.prompt_pool.map_scale = args.map_scale
         
         self.criterion = nn.CrossEntropyLoss()
         
@@ -91,15 +94,28 @@ class L2P_Trainer:
     def configure_optimizers(self):
         # Only optimize Prompt Pool and Classifier
         # Backbone is already frozen in L2P_PointNet __init__
-        
-        params_to_optimize = []
+
+        prompt_key_param = None
+        if self.model.prompt_pool.prompt_key is not None:
+            prompt_key_param = self.model.prompt_pool.prompt_key
+
+        base_params = []
         for name, param in self.model.named_parameters():
-            if param.requires_grad:
-                # Note: We rely on gradient hooks for fine-grained prompt freezing
-                params_to_optimize.append(param)
-        
+            if not param.requires_grad:
+                continue
+            # Note: We rely on gradient hooks for fine-grained prompt freezing
+            if param is prompt_key_param:
+                continue
+            base_params.append(param)
+
+        param_groups = [
+            {'params': base_params, 'lr': 0.01},
+        ]
+        if prompt_key_param is not None:
+            param_groups.append({'params': [prompt_key_param], 'lr': self.args.prompt_key_lr})
+
         # Use Adam as standard
-        optimizer = torch.optim.Adam(params_to_optimize, lr=0.01) # Tuning might be needed
+        optimizer = torch.optim.Adam(param_groups) # Tuning might be needed
         return optimizer
 
     def train(self, train_loader, val_loader, val_original=None, task_num=0, ref_model=None):
@@ -430,4 +446,4 @@ class L2P_Trainer:
         print(f"  [Oracle-Gated]    NCM Accuracy: {acc_oracle:.4f}")
         print(f"  [Task Prediction] Accuracy:     {acc_task:.4f}")
         
-        return acc_pred
+        return acc_pred_top2

@@ -5,7 +5,7 @@ from methods.poincareball import PoincareBall
 class HyperbolicPromptPool(nn.Module):
     def __init__(self, length=5, embed_dim=768, embedding_key='mean', prompt_init='uniform', prompt_pool=False,
                  prompt_key=False, pool_size=None, top_k=None, batchwise_prompt=False, prompt_key_init='uniform',
-                 c=1.0, num_tasks=20, prompts_per_task=3, map_scale=0.1):
+                 c=1.0, num_tasks=20, prompts_per_task=3, map_scale=0.1, selection_metric='hyperbolic'):
         super().__init__()
 
         self.length = length
@@ -20,6 +20,7 @@ class HyperbolicPromptPool(nn.Module):
         self.num_tasks = num_tasks
         self.prompts_per_task = prompts_per_task
         self.map_scale = map_scale
+        self.selection_metric = selection_metric
 
         if self.prompt_pool:
             if pool_size is None:
@@ -63,6 +64,25 @@ class HyperbolicPromptPool(nn.Module):
         x_scaled = x_norm * scale
         x_ball = self.ball.expmap0(x_scaled)
         return self.ball.proju0(x_ball)
+
+    def compute_similarity(self, query, keys):
+        if self.selection_metric == 'hyperbolic':
+            query_ball = self.map_to_ball(query, dim=1)
+            keys_ball = self.map_to_ball(keys, dim=1)
+            query_expanded = query_ball.unsqueeze(1)
+            keys_expanded = keys_ball.unsqueeze(0)
+            distance = self.ball.dist(query_expanded, keys_expanded, keepdim=False) # [B, Pool]
+            similarity = -1 * distance
+            return similarity, distance, query_ball, keys_ball
+
+        if self.selection_metric == 'cosine':
+            query_norm = self.l2_normalize(query, dim=1)
+            keys_norm = self.l2_normalize(keys, dim=1)
+            similarity = torch.matmul(query_norm, keys_norm.T)
+            distance = -similarity
+            return similarity, distance, query_norm, keys_norm
+
+        raise ValueError(f"Unsupported selection_metric: {self.selection_metric}")
     
     def forward(self, x_embed, prompt_mask=None, cls_features=None, task_id=None):
         out = dict()
@@ -81,37 +101,12 @@ class HyperbolicPromptPool(nn.Module):
             else:
                 raise NotImplementedError("Not supported way of calculating embedding keys!")
 
-            # L2P original: L2 Normalize.
-            # Hyperbolic: Map Euclidean vectors to the Poincare Ball via expmap0 for stability.
-            # This reduces boundary saturation from direct projection.
-            prompt_key_norm = self.map_to_ball(self.prompt_key, dim=1)
-            x_embed_norm = self.map_to_ball(x_embed_mean, dim=1)
+            similarity, distance, x_embed_norm, prompt_key_norm = self.compute_similarity(
+                x_embed_mean, self.prompt_key
+            )
 
-            # --- HYPERBOLIC REPLACEMENT START ---
-            # Calculate Poincare Distance between Query (x_embed_norm) and Keys (prompt_key_norm)
-            # x_embed_norm: [B, C]
-            # prompt_key_norm: [Pool_Size, C]
-            
-            # dist function in poincareball.py expects inputs of same shape or broadcastable.
-            # We need pairwise distance matrix [B, Pool_Size]
-            # dist(x, y)
-            
-            # Reshape for broadcasting
-            B = x_embed_norm.shape[0]
             PoolSize = prompt_key_norm.shape[0]
-            
-            # efficient pairwise distance for hyperbolic space? 
-            # Option 1: Loop (Slow)
-            # Option 2: Broadcast
-            # query: [B, 1, C]
-            # keys:  [1, PoolSize, C]
-            query_expanded = x_embed_norm.unsqueeze(1)
-            keys_expanded = prompt_key_norm.unsqueeze(0)
-            
-            # This relies on the implementation of .dist() in PoincareBall supporting broadcasting.
-            # Based on geoopt, it usually does.
-            distance = self.ball.dist(query_expanded, keys_expanded, keepdim=False) # [B, PoolSize]
-            
+
             # --- PROGRESSIVE STRATEGY MASKING ---
             if task_id is not None:
                 # Mask future prompts
@@ -123,7 +118,6 @@ class HyperbolicPromptPool(nn.Module):
             # L2P selects Top-K *Closest* -> Smallest Distance
             # similarity = -distance (so Max(-dist) = Min(dist))
             similarity = -1 * distance
-            # --- HYPERBOLIC REPLACEMENT END ---
             
             if prompt_mask is None:
                 _, idx = torch.topk(similarity, k=self.top_k, dim=1) # B, top_k
