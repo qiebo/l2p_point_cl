@@ -1,0 +1,66 @@
+项目背景与重构任务说明书
+1. 项目概述 (Project Overview)
+目标： 开发一个基于 Prompt Learning (提示学习) 的 3D 点云持续学习系统，用于硕士毕业论文。
+核心创新点： 结合 L2P (Learning to Prompt) 的机制与 双曲空间 (Hyperbolic Space) 的度量优势，解决 3D 点云在类增量学习（Class-Incremental Learning）中的灾难性遗忘问题，且不使用任何旧数据缓存（No Rehearsal）。
+当前状态：
+文件夹中包含两个项目的代码：
+point hyperbolic replay/ (师兄的旧代码)： 基于 PointNet + 扩散模型 + 缓存重放。包含完整的数据处理流水线和双曲数学工具。
+l2p-pytorch-main/ (参考代码)： Google 官方或复现的 L2P 算法，基于 ViT 处理图像。
+这两个文件夹中，都包含各自项目对应的论文，你可以查阅。
+
+主要任务：
+将 l2p-pytorch-main 中的核心算法（Prompt Pool + Query 机制）移植到 point hyperbolic replay 中，替换掉原有的“生成式重放”模块。同时，将 L2P 中的“余弦距离检索”修改为“双曲距离检索”。
+
+2. 核心架构设计 (Architecture Design)
+重构后的模型数据流（Pipeline）如下：
+输入 (Input): $N \times 3$ 点云数据 (Batch Size, 2048, 3)。
+特征提取 (Frozen Backbone): 使用预训练好的 PointNet/PointNet++ (来自 Old_Project)。
+状态： 参数冻结 (requires_grad=False)，模式锁定为 .eval()。
+输出： 全局特征向量 (Global Feature)，例如 1024 维。
+L2P 模块 (Prompting):
+Query: 使用上述全局特征作为 Query Key。
+Matching: 在 双曲空间 (Poincaré Ball) 中计算 Query 与 Prompt Pool 中 Keys 的距离（复用 Old_Project 中的双曲公式）。
+Selection: 检索出 Top-N 个最匹配的 Prompts。
+特征融合 (Fusion): 将检索到的 Prompts 与原始全局特征进行拼接 (Concatenation) 或相加。
+分类头 (Classifier): 一个可训练的全连接层，根据融合后的特征输出类别概率。
+1.
+
+3. 待办事项清单 (Execution TodoList)
+请根据以下步骤，一步步辅助我完成代码的整合与修改。每完成一步，请进行简单的代码验证。
+Phase 0: 首先认真分析两个项目文件夹，结和里面的pdf论文，弄清楚项目框架项目实现逻辑。
+Phase 1: 环境清理与资产盘点 (Cleanup & Setup)
+[ ] Step 1.1: 清理旧项目
+在 Old_Project 中，保留 DataLoader (数据读取)、Backbone (PointNet模型定义)、Utils (特别是双曲距离公式)、Metrics (评估指标)。
+删除/移除 Diffusion_Model (扩散模型)、Replay_Buffer (缓存区)、Generative_Trainer 等与生成式重放相关的文件，确保项目瘦身。
+[ ] Step 1.2: 提取 L2P 核心
+阅读 L2P_Project，定位到 PromptPool 类（定义 Key-Value 对）和 Query 函数（检索逻辑）。
+理解其输入输出维度，准备移植。
+Phase 2: 模型构建 (Model Construction)
+[ ] Step 2.1: 构建 Prompt Pool 模块
+在 Old_Project 的模型文件中新建一个 HyperbolicPromptPool 类。
+移植 L2P 的逻辑，但将 cosine_similarity 替换为师兄代码中的 poincare_distance (双曲距离)。
+确保 Prompt 的维度与 PointNet 的输出特征维度兼容（或设计好拼接逻辑）。
+[ ] Step 2.2: 组装新模型 (The Assembler)
+创建一个新的模型类（如 L2P_PointNet）。
+Backbone: 加载 PointNet，加载预训练权重（如果没有则先用随机初始化测试），并设置所有参数 requires_grad=False。
+Prompt: 实例化 Step 2.1 中的 HyperbolicPromptPool。
+Classifier: 定义一个新的线性分类头，输入维度 = Backbone输出维度 + Prompt总维度。
+Forward: 实现 Feature Extract -> Query -> Concat -> Classify 的前向传播流程。
+Phase 3: 训练流程改造 (Training Pipeline)
+[ ] Step 3.1: 优化器配置 (Optimizer)
+修改 Trainer 中的优化器设置。
+确保优化器 只更新 PromptPool 和 Classifier 的参数。
+确保 Backbone 的参数 完全不参与 更新。
+[ ] Step 3.2: 损失函数调整 (Loss Function)
+主损失：CrossEntropy Loss (分类损失)。
+辅助损失 (Surrogate Loss)：L2P 特有的 Pull Constraint（拉近 Query 和 Selected Key 的距离）。注意这里也要用双曲距离计算。
+[ ] Step 3.3: 任务流控制 (Task Loop)
+确保数据加载器按“类增量”模式（Task 1: 类0-1, Task 2: 类2-3...）提供数据。
+移除所有与“旧数据回放”相关的逻辑，确保 Batch 中只有当前任务的数据。
+Phase 4: 测试与调试 (Run & Debug)
+[ ] Step 4.1: 显存与维度检查
+编写一个简单的脚本，用随机生成的 (Batch=16, Points=2048, Dim=3) 数据跑一次 Forward 和 Backward。
+确认 6G 显存是否溢出，确认维度拼接是否报错。
+[ ] Step 4.2: 跑通 Task 1
+使用 ModelNet40 数据集，运行 Task 1 (前几个类)。
+观察 Loss 是否下降，准确率是否上升（预期应 > 80%）。

@@ -1,0 +1,20 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 33.09s ===>
+<=== Epoch: 1 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 22.73s ===>
+<=== Epoch: 2 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 22.75s ===>
+<=== Epoch: 3 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 22.54s ===>
+<=== Epoch: 4 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 22.58s ===>
+<=== Epoch: 5 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 21.91s ===>
+<=== Epoch: 6 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 22.42s ===>
+<=== Epoch: 7 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 22.14s ===>
+<=== Epoch: 8 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 21.97s ===>
+<=== Epoch: 9 | Loss: inf | Val Acc (Linear): 0.0000 | Time: 22.04s ===>

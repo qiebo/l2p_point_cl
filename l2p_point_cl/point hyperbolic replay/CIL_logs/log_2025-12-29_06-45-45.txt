@@ -1,0 +1,33 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: 13.4557 | Val Acc (Linear): 0.9500 | Time: 38.62s ===>
+Task 0 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 2
+Validating with NCM...
+NCM Accuracy: 0.9100
+Task 0 Final CIL Accuracy (NCM): 0.9100
+Task 0 Linear Head Accuracy (For Reference): 0.9500
+
+==================== Task 1 ====================
+Training on Categories: ['airplane', 'bookshelf']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 1 Training ===================>
+<=== Epoch: 0 | Loss: 24.9082 | Val Acc (Linear): 0.4275 | Time: 24.05s ===>
+Task 1 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 4
+Validating with NCM...
+NCM Accuracy: 0.5250
+Task 1 Final CIL Accuracy (NCM): 0.5250
+Task 1 Linear Head Accuracy (For Reference): 0.4275

@@ -1,0 +1,12 @@
+checkpoint:	 checkpoints/model31C-demo1
+msg:	 demo1
+batch_size:	 32
+model:	 model31C
+num_classes:	 15
+epoch:	 200
+num_points:	 1024
+learning_rate:	 0.01
+weight_decay:	 0.0001
+smoothing:	 False
+seed:	 None
+workers:	 4

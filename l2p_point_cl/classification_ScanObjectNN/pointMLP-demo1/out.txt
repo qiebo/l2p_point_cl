@@ -1,0 +1,1013 @@
+args: Namespace(batch_size=32, checkpoint='checkpoints/model31C-demo1', epoch=200, learning_rate=0.01, model='model31C', msg='demo1', num_classes=15, num_points=1024, seed=None, smoothing=False, weight_decay=0.0001, workers=4)
+==> Building model..
+==> Preparing data..
+Epoch(1/200) Learning Rate 0.01:
+args: Namespace(batch_size=32, checkpoint='checkpoints/model31C-demo1', epoch=200, learning_rate=0.01, model='model31C', msg='demo1', num_classes=15, num_points=1024, seed=None, smoothing=False, weight_decay=0.0001, workers=4)
+==> Building model..
+==> Preparing data..
+Epoch(1/200) Learning Rate 0.01:
+Training loss:2.538 acc_avg:15.099% acc:20.084% time:182s
+Testing loss:2.331 acc_avg:19.01% acc:26.475% time:17s [best test acc: 26.475%] 
+
+
+Epoch(2/200) Learning Rate 0.00999938933078422:
+Training loss:2.349 acc_avg:21.669% acc:29.152% time:181s
+Testing loss:2.244 acc_avg:26.166% acc:32.373% time:16s [best test acc: 32.373%] 
+
+
+Epoch(3/200) Learning Rate 0.009997557473810372:
+Training loss:2.211 acc_avg:28.061% acc:36.649% time:182s
+Testing loss:2.053 acc_avg:36.171% acc:44.31% time:16s [best test acc: 44.31%] 
+
+
+Epoch(4/200) Learning Rate 0.009994504881061753:
+Training loss:2.095 acc_avg:34.127% acc:43.144% time:181s
+Testing loss:1.966 acc_avg:42.164% acc:50.347% time:16s [best test acc: 50.347%] 
+
+
+Epoch(5/200) Learning Rate 0.009990232305719946:
+Training loss:2.018 acc_avg:40.751% acc:49.377% time:181s
+Testing loss:1.903 acc_avg:42.951% acc:51.839% time:16s [best test acc: 51.839%] 
+
+
+Epoch(6/200) Learning Rate 0.009984740801978986:
+Training loss:1.934 acc_avg:45.305% acc:53.555% time:181s
+Testing loss:1.792 acc_avg:51.282% acc:59.438% time:16s [best test acc: 59.438%] 
+
+
+Epoch(7/200) Learning Rate 0.009978031724785247:
+Training loss:1.87 acc_avg:49.763% acc:57.795% time:181s
+Testing loss:1.77 acc_avg:55.047% acc:61.867% time:16s [best test acc: 61.867%] 
+
+
+Epoch(8/200) Learning Rate 0.009970106729503141:
+Training loss:1.824 acc_avg:52.873% acc:60.621% time:181s
+Testing loss:1.745 acc_avg:57.749% acc:62.422% time:16s [best test acc: 62.422%] 
+
+
+Epoch(9/200) Learning Rate 0.009960967771506667:
+Training loss:1.78 acc_avg:55.642% acc:62.825% time:182s
+Testing loss:1.72 acc_avg:59.291% acc:63.532% time:16s [best test acc: 63.532%] 
+
+
+Epoch(10/200) Learning Rate 0.00995061710569696:
+Training loss:1.741 acc_avg:57.484% acc:64.422% time:181s
+Testing loss:1.669 acc_avg:61.285% acc:66.378% time:16s [best test acc: 66.378%] 
+
+
+Epoch(11/200) Learning Rate 0.009939057285945933:
+Training loss:1.706 acc_avg:60.525% acc:66.907% time:181s
+Testing loss:1.644 acc_avg:63.755% acc:68.563% time:16s [best test acc: 68.563%] 
+
+
+Epoch(12/200) Learning Rate 0.009926291164466132:
+Training loss:1.673 acc_avg:62.614% acc:68.592% time:181s
+Testing loss:1.636 acc_avg:62.759% acc:67.488% time:16s [best test acc: 68.563%] 
+
+
+Epoch(13/200) Learning Rate 0.009912321891107011:
+Training loss:1.644 acc_avg:64.406% acc:70.181% time:181s
+Testing loss:1.595 acc_avg:65.845% acc:70.541% time:16s [best test acc: 70.541%] 
+
+
+Epoch(14/200) Learning Rate 0.009897152912577742:
+Training loss:1.62 acc_avg:66.317% acc:71.989% time:182s
+Testing loss:1.596 acc_avg:64.543% acc:70.09% time:16s [best test acc: 70.541%] 
+
+
+Epoch(15/200) Learning Rate 0.009880787971596802:
+Training loss:1.594 acc_avg:68.174% acc:73.341% time:181s
+Testing loss:1.561 acc_avg:69.095% acc:73.005% time:16s [best test acc: 73.005%] 
+
+
+Epoch(16/200) Learning Rate 0.0098632311059685:
+Training loss:1.566 acc_avg:70.387% acc:74.561% time:181s
+Testing loss:1.58 acc_avg:68.435% acc:71.999% time:16s [best test acc: 73.005%] 
+
+
+Epoch(17/200) Learning Rate 0.009844486647586725:
+Training loss:1.547 acc_avg:71.659% acc:75.632% time:181s
+Testing loss:1.552 acc_avg:69.376% acc:73.699% time:16s [best test acc: 73.699%] 
+
+
+Epoch(18/200) Learning Rate 0.009824559221366103:
+Training loss:1.525 acc_avg:72.773% acc:76.835% time:181s
+Testing loss:1.538 acc_avg:71.052% acc:74.254% time:16s [best test acc: 74.254%] 
+
+
+Epoch(19/200) Learning Rate 0.009803453744100871:
+Training loss:1.512 acc_avg:74.34% acc:77.651% time:182s
+Testing loss:1.51 acc_avg:72.343% acc:75.33% time:16s [best test acc: 75.33%] 
+
+
+Epoch(20/200) Learning Rate 0.009781175423251737:
+Training loss:1.492 acc_avg:75.219% acc:78.678% time:182s
+Testing loss:1.585 acc_avg:69.797% acc:72.241% time:16s [best test acc: 75.33%] 
+
+
+Epoch(21/200) Learning Rate 0.009757729755661014:
+Training loss:1.468 acc_avg:76.989% acc:79.872% time:181s
+Testing loss:1.466 acc_avg:75.306% acc:77.793% time:16s [best test acc: 77.793%] 
+
+
+Epoch(22/200) Learning Rate 0.009733122526196352:
+Training loss:1.456 acc_avg:77.971% acc:80.811% time:181s
+Testing loss:1.51 acc_avg:74.136% acc:75.781% time:16s [best test acc: 77.793%] 
+
+
+Epoch(23/200) Learning Rate 0.00970735980632342:
+Training loss:1.45 acc_avg:78.393% acc:81.092% time:181s
+Testing loss:1.523 acc_avg:74.716% acc:75.885% time:16s [best test acc: 77.793%] 
+
+
+Epoch(24/200) Learning Rate 0.009680447952607849:
+Training loss:1.436 acc_avg:79.101% acc:81.777% time:181s
+Testing loss:1.456 acc_avg:76.793% acc:79.251% time:16s [best test acc: 79.251%] 
+
+
+Epoch(25/200) Learning Rate 0.009652393605146848:
+Training loss:1.411 acc_avg:80.82% acc:83.287% time:181s
+Testing loss:1.435 acc_avg:76.728% acc:79.251% time:16s [best test acc: 79.251%] 
+
+
+Epoch(26/200) Learning Rate 0.009623203685930873:
+Training loss:1.402 acc_avg:81.522% acc:83.883% time:182s
+Testing loss:1.504 acc_avg:73.89% acc:76.405% time:16s [best test acc: 79.251%] 
+
+
+Epoch(27/200) Learning Rate 0.009592885397135709:
+Training loss:1.389 acc_avg:82.112% acc:84.524% time:181s
+Testing loss:1.444 acc_avg:76.718% acc:78.938% time:16s [best test acc: 79.251%] 
+
+
+Epoch(28/200) Learning Rate 0.009561446219345456:
+Training loss:1.373 acc_avg:83.487% acc:85.341% time:181s
+Testing loss:1.439 acc_avg:77.622% acc:80.257% time:16s [best test acc: 80.257%] 
+
+
+Epoch(29/200) Learning Rate 0.0095288939097068:
+Training loss:1.372 acc_avg:82.967% acc:85.068% time:181s
+Testing loss:1.557 acc_avg:69.751% acc:72.797% time:16s [best test acc: 80.257%] 
+
+
+Epoch(30/200) Learning Rate 0.009495236500015049:
+Training loss:1.363 acc_avg:84.397% acc:86.157% time:181s
+Testing loss:1.414 acc_avg:77.56% acc:80.014% time:16s [best test acc: 80.257%] 
+
+
+Epoch(31/200) Learning Rate 0.009460482294732422:
+Training loss:1.349 acc_avg:84.98% acc:86.78% time:181s
+Testing loss:1.475 acc_avg:75.081% acc:77.516% time:16s [best test acc: 80.257%] 
+
+
+Epoch(32/200) Learning Rate 0.009424639868939036:
+Training loss:1.329 acc_avg:85.681% acc:87.553% time:181s
+Testing loss:1.428 acc_avg:76.81% acc:79.806% time:16s [best test acc: 80.257%] 
+
+
+Epoch(33/200) Learning Rate 0.009387718066217127:
+Training loss:1.33 acc_avg:86.47% acc:87.79% time:182s
+Testing loss:1.462 acc_avg:76.495% acc:78.452% time:16s [best test acc: 80.257%] 
+
+
+Epoch(34/200) Learning Rate 0.00934972599646905:
+Training loss:1.317 acc_avg:86.885% acc:88.413% time:181s
+Testing loss:1.428 acc_avg:77.505% acc:80.049% time:16s [best test acc: 80.257%] 
+
+
+Epoch(35/200) Learning Rate 0.009310673033669524:
+Training loss:1.309 acc_avg:87.476% acc:88.659% time:181s
+Testing loss:1.415 acc_avg:79.134% acc:81.09% time:16s [best test acc: 81.09%] 
+
+
+Epoch(36/200) Learning Rate 0.00927056881355276:
+Training loss:1.297 acc_avg:88.201% acc:89.422% time:181s
+Testing loss:1.447 acc_avg:76.512% acc:79.84% time:16s [best test acc: 81.09%] 
+
+
+Epoch(37/200) Learning Rate 0.009229423231234978:
+Training loss:1.3 acc_avg:87.979% acc:89.431% time:182s
+Testing loss:1.393 acc_avg:79.833% acc:81.957% time:16s [best test acc: 81.957%] 
+
+
+Epoch(38/200) Learning Rate 0.009187246438772941:
+Training loss:1.281 acc_avg:89.141% acc:90.37% time:182s
+Testing loss:1.414 acc_avg:78.302% acc:80.847% time:16s [best test acc: 81.957%] 
+
+
+Epoch(39/200) Learning Rate 0.009144048842659083:
+Training loss:1.278 acc_avg:89.073% acc:90.537% time:181s
+Testing loss:1.43 acc_avg:77.838% acc:80.847% time:16s [best test acc: 81.957%] 
+
+
+Epoch(40/200) Learning Rate 0.009099841101253869:
+Training loss:1.269 acc_avg:89.811% acc:91.099% time:181s
+Testing loss:1.425 acc_avg:78.043% acc:80.604% time:16s [best test acc: 81.957%] 
+
+
+Epoch(41/200) Learning Rate 0.009054634122155993:
+Training loss:1.264 acc_avg:90.296% acc:91.231% time:181s
+Testing loss:1.386 acc_avg:80.723% acc:82.304% time:16s [best test acc: 82.304%] 
+
+
+Epoch(42/200) Learning Rate 0.009008439059511103:
+Training loss:1.255 acc_avg:90.607% acc:91.591% time:182s
+Testing loss:1.438 acc_avg:76.902% acc:80.049% time:16s [best test acc: 82.304%] 
+
+
+Epoch(43/200) Learning Rate 0.008961267311259671:
+Training loss:1.247 acc_avg:91.05% acc:92.091% time:181s
+Testing loss:1.425 acc_avg:78.671% acc:79.806% time:16s [best test acc: 82.304%] 
+
+
+Epoch(44/200) Learning Rate 0.008913130516324736:
+Training loss:1.241 acc_avg:91.464% acc:92.319% time:181s
+Testing loss:1.416 acc_avg:79.473% acc:81.159% time:16s [best test acc: 82.304%] 
+
+
+Epoch(45/200) Learning Rate 0.00886404055174016:
+Training loss:1.235 acc_avg:92.036% acc:92.986% time:181s
+Testing loss:1.408 acc_avg:77.941% acc:80.812% time:16s [best test acc: 82.304%] 
+
+
+Epoch(46/200) Learning Rate 0.008814009529720158:
+Training loss:1.224 acc_avg:93.08% acc:93.636% time:181s
+Testing loss:1.427 acc_avg:79.142% acc:80.604% time:16s [best test acc: 82.304%] 
+
+
+Epoch(47/200) Learning Rate 0.008763049794670779:
+Training loss:1.216 acc_avg:93.429% acc:94.048% time:182s
+Testing loss:1.392 acc_avg:79.619% acc:82.339% time:16s [best test acc: 82.339%] 
+
+
+Epoch(48/200) Learning Rate 0.008711173920144121:
+Training loss:1.214 acc_avg:93.249% acc:93.899% time:181s
+Testing loss:1.399 acc_avg:78.88% acc:81.437% time:16s [best test acc: 82.339%] 
+
+
+Epoch(49/200) Learning Rate 0.00865839470573599:
+Training loss:1.219 acc_avg:92.947% acc:93.653% time:181s
+Testing loss:1.396 acc_avg:78.434% acc:81.437% time:16s [best test acc: 82.339%] 
+
+
+Epoch(50/200) Learning Rate 0.008604725173927788:
+Training loss:1.21 acc_avg:93.383% acc:94.005% time:182s
+Testing loss:1.371 acc_avg:81.24% acc:83.484% time:16s [best test acc: 83.484%] 
+
+
+Epoch(51/200) Learning Rate 0.008550178566873413:
+Training loss:1.199 acc_avg:94.013% acc:94.733% time:181s
+Testing loss:1.408 acc_avg:79.305% acc:81.957% time:16s [best test acc: 83.484%] 
+
+
+Epoch(52/200) Learning Rate 0.008494768343131958:
+Training loss:1.204 acc_avg:93.994% acc:94.382% time:181s
+Testing loss:1.403 acc_avg:78.975% acc:81.124% time:16s [best test acc: 83.484%] 
+
+
+Epoch(53/200) Learning Rate 0.008438508174347012:
+Training loss:1.195 acc_avg:94.416% acc:95.023% time:181s
+Testing loss:1.383 acc_avg:80.623% acc:82.79% time:16s [best test acc: 83.484%] 
+
+
+Epoch(54/200) Learning Rate 0.00838141194187338:
+Training loss:1.193 acc_avg:94.45% acc:94.979% time:181s
+Testing loss:1.409 acc_avg:78.704% acc:81.402% time:16s [best test acc: 83.484%] 
+
+
+Epoch(55/200) Learning Rate 0.008323493733352078:
+Training loss:1.183 acc_avg:95.016% acc:95.506% time:181s
+Testing loss:1.403 acc_avg:80.591% acc:82.443% time:16s [best test acc: 83.484%] 
+
+
+Epoch(56/200) Learning Rate 0.00826476783923441:
+Training loss:1.182 acc_avg:94.781% acc:95.479% time:181s
+Testing loss:1.368 acc_avg:80.838% acc:83.067% time:16s [best test acc: 83.484%] 
+
+
+Epoch(57/200) Learning Rate 0.008205248749256015:
+Training loss:1.179 acc_avg:95.508% acc:95.822% time:181s
+Testing loss:1.395 acc_avg:79.893% acc:82.026% time:16s [best test acc: 83.484%] 
+
+
+Epoch(58/200) Learning Rate 0.008144951148861742:
+Training loss:1.173 acc_avg:95.587% acc:95.997% time:181s
+Testing loss:1.374 acc_avg:79.572% acc:82.443% time:16s [best test acc: 83.484%] 
+
+
+Epoch(59/200) Learning Rate 0.008083889915582234:
+Training loss:1.167 acc_avg:95.909% acc:96.383% time:181s
+Testing loss:1.404 acc_avg:79.7% acc:81.992% time:16s [best test acc: 83.484%] 
+
+
+Epoch(60/200) Learning Rate 0.008022080115363126:
+Training loss:1.162 acc_avg:96.009% acc:96.427% time:181s
+Testing loss:1.385 acc_avg:80.144% acc:82.547% time:16s [best test acc: 83.484%] 
+
+
+Epoch(61/200) Learning Rate 0.007959536998847742:
+Training loss:1.158 acc_avg:96.517% acc:96.814% time:181s
+Testing loss:1.388 acc_avg:79.854% acc:81.888% time:16s [best test acc: 83.484%] 
+
+
+Epoch(62/200) Learning Rate 0.007896275997614229:
+Training loss:1.16 acc_avg:96.321% acc:96.664% time:181s
+Testing loss:1.391 acc_avg:80.291% acc:82.512% time:16s [best test acc: 83.484%] 
+
+
+Epoch(63/200) Learning Rate 0.007832312720368046:
+Training loss:1.157 acc_avg:96.423% acc:96.805% time:181s
+Testing loss:1.409 acc_avg:79.576% acc:81.922% time:16s [best test acc: 83.484%] 
+
+
+Epoch(64/200) Learning Rate 0.00776766294909075:
+Training loss:1.153 acc_avg:96.75% acc:96.98% time:181s
+Testing loss:1.387 acc_avg:80.46% acc:82.408% time:16s [best test acc: 83.484%] 
+
+
+Epoch(65/200) Learning Rate 0.00770234263514603:
+Training loss:1.148 acc_avg:97.06% acc:97.235% time:181s
+Testing loss:1.387 acc_avg:80.277% acc:82.894% time:16s [best test acc: 83.484%] 
+
+
+Epoch(66/200) Learning Rate 0.007636367895343944:
+Training loss:1.143 acc_avg:97.294% acc:97.568% time:181s
+Testing loss:1.367 acc_avg:81.221% acc:83.171% time:16s [best test acc: 83.484%] 
+
+
+Epoch(67/200) Learning Rate 0.007569755007964335:
+Training loss:1.141 acc_avg:97.348% acc:97.586% time:181s
+Testing loss:1.373 acc_avg:81.433% acc:82.998% time:16s [best test acc: 83.484%] 
+
+
+Epoch(68/200) Learning Rate 0.007502520408740415:
+Training loss:1.139 acc_avg:97.416% acc:97.683% time:182s
+Testing loss:1.373 acc_avg:80.688% acc:83.067% time:16s [best test acc: 83.484%] 
+
+
+Epoch(69/200) Learning Rate 0.007434680686803487:
+Training loss:1.139 acc_avg:97.292% acc:97.489% time:181s
+Testing loss:1.359 acc_avg:82.11% acc:84.039% time:16s [best test acc: 84.039%] 
+
+
+Epoch(70/200) Learning Rate 0.007366252580589836:
+Training loss:1.132 acc_avg:97.673% acc:97.928% time:181s
+Testing loss:1.361 acc_avg:81.644% acc:83.935% time:16s [best test acc: 84.039%] 
+
+
+Epoch(71/200) Learning Rate 0.007297252973710754:
+Training loss:1.132 acc_avg:97.642% acc:97.814% time:182s
+Testing loss:1.354 acc_avg:82.132% acc:84.178% time:16s [best test acc: 84.178%] 
+
+
+Epoch(72/200) Learning Rate 0.007227698890786777:
+Training loss:1.131 acc_avg:97.639% acc:97.955% time:182s
+Testing loss:1.382 acc_avg:79.807% acc:82.304% time:16s [best test acc: 84.178%] 
+
+
+Epoch(73/200) Learning Rate 0.007157607493247108:
+Training loss:1.131 acc_avg:97.814% acc:97.999% time:181s
+Testing loss:1.381 acc_avg:81.437% acc:83.345% time:16s [best test acc: 84.178%] 
+
+
+Epoch(74/200) Learning Rate 0.0070869960750952875:
+Training loss:1.132 acc_avg:97.585% acc:97.779% time:181s
+Testing loss:1.363 acc_avg:81.243% acc:83.31% time:16s [best test acc: 84.178%] 
+
+
+Epoch(75/200) Learning Rate 0.0070158820586421625:
+Training loss:1.126 acc_avg:97.901% acc:98.121% time:182s
+Testing loss:1.378 acc_avg:79.925% acc:82.963% time:16s [best test acc: 84.178%] 
+
+
+Epoch(76/200) Learning Rate 0.0069442829902071936:
+Training loss:1.127 acc_avg:97.807% acc:97.884% time:182s
+Testing loss:1.376 acc_avg:80.451% acc:82.79% time:16s [best test acc: 84.178%] 
+
+
+Epoch(77/200) Learning Rate 0.006872216535789156:
+Training loss:1.121 acc_avg:98.304% acc:98.297% time:182s
+Testing loss:1.368 acc_avg:81.648% acc:83.588% time:16s [best test acc: 84.178%] 
+
+
+Epoch(78/200) Learning Rate 0.006799700476707322:
+Training loss:1.117 acc_avg:98.653% acc:98.692% time:181s
+Testing loss:1.369 acc_avg:80.903% acc:83.657% time:16s [best test acc: 84.178%] 
+
+
+Epoch(79/200) Learning Rate 0.0067267527052141925:
+Training loss:1.118 acc_avg:98.347% acc:98.517% time:181s
+Testing loss:1.361 acc_avg:81.414% acc:83.38% time:16s [best test acc: 84.178%] 
+
+
+Epoch(80/200) Learning Rate 0.00665339122008084:
+Training loss:1.113 acc_avg:98.668% acc:98.736% time:181s
+Testing loss:1.36 acc_avg:81.902% acc:83.657% time:16s [best test acc: 84.178%] 
+
+
+Epoch(81/200) Learning Rate 0.006579634122155989:
+Training loss:1.11 acc_avg:98.823% acc:98.929% time:181s
+Testing loss:1.352 acc_avg:81.208% acc:83.727% time:16s [best test acc: 84.178%] 
+
+
+Epoch(82/200) Learning Rate 0.0065054996098999045:
+Training loss:1.107 acc_avg:98.89% acc:98.938% time:181s
+Testing loss:1.373 acc_avg:82.242% acc:84.282% time:16s [best test acc: 84.282%] 
+
+
+Epoch(83/200) Learning Rate 0.006431005974894185:
+Training loss:1.109 acc_avg:98.936% acc:98.999% time:182s
+Testing loss:1.363 acc_avg:82.001% acc:84.074% time:16s [best test acc: 84.282%] 
+
+
+Epoch(84/200) Learning Rate 0.006356171597328595:
+Training loss:1.108 acc_avg:98.882% acc:98.947% time:181s
+Testing loss:1.366 acc_avg:82.361% acc:84.108% time:16s [best test acc: 84.282%] 
+
+
+Epoch(85/200) Learning Rate 0.006281014941466031:
+Training loss:1.103 acc_avg:99.104% acc:99.14% time:181s
+Testing loss:1.366 acc_avg:81.366% acc:84.108% time:16s [best test acc: 84.282%] 
+
+
+Epoch(86/200) Learning Rate 0.006205554551086733:
+Training loss:1.104 acc_avg:98.948% acc:99.078% time:181s
+Testing loss:1.367 acc_avg:82.53% acc:84.212% time:16s [best test acc: 84.282%] 
+
+
+Epoch(87/200) Learning Rate 0.006129809044912887:
+Training loss:1.106 acc_avg:99.021% acc:99.07% time:181s
+Testing loss:1.357 acc_avg:81.913% acc:83.9% time:16s [best test acc: 84.282%] 
+
+
+Epoch(88/200) Learning Rate 0.006053797112014738:
+Training loss:1.102 acc_avg:99.206% acc:99.271% time:181s
+Testing loss:1.352 acc_avg:82.133% acc:84.212% time:16s [best test acc: 84.282%] 
+
+
+Epoch(89/200) Learning Rate 0.005977537507199339:
+Training loss:1.103 acc_avg:98.957% acc:99.096% time:181s
+Testing loss:1.363 acc_avg:80.593% acc:83.31% time:16s [best test acc: 84.282%] 
+
+
+Epoch(90/200) Learning Rate 0.005901049046383077:
+Training loss:1.1 acc_avg:99.246% acc:99.298% time:181s
+Testing loss:1.362 acc_avg:81.593% acc:83.865% time:16s [best test acc: 84.282%] 
+
+
+Epoch(91/200) Learning Rate 0.005824350601949144:
+Training loss:1.1 acc_avg:99.141% acc:99.201% time:181s
+Testing loss:1.361 acc_avg:82.034% acc:83.796% time:16s [best test acc: 84.282%] 
+
+
+Epoch(92/200) Learning Rate 0.005747461098091036:
+Training loss:1.099 acc_avg:99.089% acc:99.149% time:181s
+Testing loss:1.353 acc_avg:81.207% acc:83.935% time:16s [best test acc: 84.282%] 
+
+
+Epoch(93/200) Learning Rate 0.005670399506143308:
+Training loss:1.096 acc_avg:99.418% acc:99.456% time:181s
+Testing loss:1.361 acc_avg:81.598% acc:83.969% time:16s [best test acc: 84.282%] 
+
+
+Epoch(94/200) Learning Rate 0.005593184839900676:
+Training loss:1.098 acc_avg:99.254% acc:99.271% time:181s
+Testing loss:1.377 acc_avg:81.177% acc:83.449% time:16s [best test acc: 84.282%] 
+
+
+Epoch(95/200) Learning Rate 0.005515836150926648:
+Training loss:1.092 acc_avg:99.322% acc:99.465% time:181s
+Testing loss:1.36 acc_avg:82.316% acc:84.143% time:16s [best test acc: 84.282%] 
+
+
+Epoch(96/200) Learning Rate 0.005438372523852835:
+Training loss:1.092 acc_avg:99.433% acc:99.526% time:182s
+Testing loss:1.359 acc_avg:81.839% acc:83.727% time:16s [best test acc: 84.282%] 
+
+
+Epoch(97/200) Learning Rate 0.005360813071670104:
+Training loss:1.093 acc_avg:99.421% acc:99.5% time:181s
+Testing loss:1.365 acc_avg:81.233% acc:83.553% time:16s [best test acc: 84.282%] 
+
+
+Epoch(98/200) Learning Rate 0.005283176931012733:
+Training loss:1.092 acc_avg:99.324% acc:99.412% time:181s
+Testing loss:1.362 acc_avg:81.432% acc:83.518% time:16s [best test acc: 84.282%] 
+
+
+Epoch(99/200) Learning Rate 0.005205483257436737:
+Training loss:1.093 acc_avg:99.302% acc:99.377% time:181s
+Testing loss:1.355 acc_avg:82.634% acc:84.49% time:16s [best test acc: 84.49%] 
+
+
+Epoch(100/200) Learning Rate 0.0051277512206935145:
+Training loss:1.091 acc_avg:99.653% acc:99.623% time:181s
+Testing loss:1.358 acc_avg:80.933% acc:83.171% time:16s [best test acc: 84.49%] 
+
+
+Epoch(101/200) Learning Rate 0.0050500000000000015:
+Training loss:1.09 acc_avg:99.532% acc:99.596% time:181s
+Testing loss:1.37 acc_avg:81.183% acc:83.414% time:16s [best test acc: 84.49%] 
+
+
+Epoch(102/200) Learning Rate 0.00497224877930649:
+Training loss:1.089 acc_avg:99.606% acc:99.596% time:181s
+Testing loss:1.362 acc_avg:82.446% acc:84.143% time:16s [best test acc: 84.49%] 
+
+
+Epoch(103/200) Learning Rate 0.004894516742563267:
+Training loss:1.089 acc_avg:99.536% acc:99.552% time:181s
+Testing loss:1.358 acc_avg:81.818% acc:84.212% time:16s [best test acc: 84.49%] 
+
+
+Epoch(104/200) Learning Rate 0.004816823068987271:
+Training loss:1.086 acc_avg:99.689% acc:99.71% time:181s
+Testing loss:1.349 acc_avg:82.018% acc:84.143% time:16s [best test acc: 84.49%] 
+
+
+Epoch(105/200) Learning Rate 0.004739186928329901:
+Training loss:1.088 acc_avg:99.522% acc:99.561% time:181s
+Testing loss:1.363 acc_avg:81.962% acc:83.969% time:16s [best test acc: 84.49%] 
+
+
+Epoch(106/200) Learning Rate 0.004661627476147171:
+Training loss:1.087 acc_avg:99.553% acc:99.579% time:182s
+Testing loss:1.356 acc_avg:82.348% acc:84.386% time:16s [best test acc: 84.49%] 
+
+
+Epoch(107/200) Learning Rate 0.004584163849073357:
+Training loss:1.086 acc_avg:99.514% acc:99.561% time:181s
+Testing loss:1.358 acc_avg:80.889% acc:83.935% time:16s [best test acc: 84.49%] 
+
+
+Epoch(108/200) Learning Rate 0.00450681516009933:
+Training loss:1.084 acc_avg:99.676% acc:99.693% time:181s
+Testing loss:1.365 acc_avg:82.037% acc:84.282% time:16s [best test acc: 84.49%] 
+
+
+Epoch(109/200) Learning Rate 0.004429600493856698:
+Training loss:1.084 acc_avg:99.745% acc:99.737% time:182s
+Testing loss:1.373 acc_avg:81.774% acc:83.553% time:16s [best test acc: 84.49%] 
+
+
+Epoch(110/200) Learning Rate 0.004352538901908971:
+Training loss:1.083 acc_avg:99.723% acc:99.693% time:181s
+Testing loss:1.344 acc_avg:82.716% acc:84.768% time:16s [best test acc: 84.768%] 
+
+
+Epoch(111/200) Learning Rate 0.004275649398050861:
+Training loss:1.082 acc_avg:99.744% acc:99.737% time:181s
+Testing loss:1.358 acc_avg:82.047% acc:84.212% time:16s [best test acc: 84.768%] 
+
+
+Epoch(112/200) Learning Rate 0.004198950953616926:
+Training loss:1.084 acc_avg:99.689% acc:99.675% time:181s
+Testing loss:1.349 acc_avg:82.463% acc:84.178% time:16s [best test acc: 84.768%] 
+
+
+Epoch(113/200) Learning Rate 0.004122462492800667:
+Training loss:1.082 acc_avg:99.728% acc:99.71% time:181s
+Testing loss:1.35 acc_avg:82.266% acc:84.351% time:16s [best test acc: 84.768%] 
+
+
+Epoch(114/200) Learning Rate 0.004046202887985267:
+Training loss:1.083 acc_avg:99.601% acc:99.675% time:182s
+Testing loss:1.349 acc_avg:82.683% acc:84.247% time:16s [best test acc: 84.768%] 
+
+
+Epoch(115/200) Learning Rate 0.003970190955087119:
+Training loss:1.081 acc_avg:99.786% acc:99.807% time:181s
+Testing loss:1.364 acc_avg:81.62% acc:83.727% time:16s [best test acc: 84.768%] 
+
+
+Epoch(116/200) Learning Rate 0.0038944454489132706:
+Training loss:1.082 acc_avg:99.631% acc:99.675% time:181s
+Testing loss:1.369 acc_avg:82.623% acc:84.559% time:16s [best test acc: 84.768%] 
+
+
+Epoch(117/200) Learning Rate 0.0038189850585339715:
+Training loss:1.081 acc_avg:99.745% acc:99.745% time:181s
+Testing loss:1.355 acc_avg:82.575% acc:84.386% time:16s [best test acc: 84.768%] 
+
+
+Epoch(118/200) Learning Rate 0.003743828402671407:
+Training loss:1.079 acc_avg:99.807% acc:99.789% time:182s
+Testing loss:1.359 acc_avg:82.143% acc:84.108% time:16s [best test acc: 84.768%] 
+
+
+Epoch(119/200) Learning Rate 0.003668994025105818:
+Training loss:1.079 acc_avg:99.793% acc:99.789% time:181s
+Testing loss:1.344 acc_avg:82.475% acc:84.316% time:16s [best test acc: 84.768%] 
+
+
+Epoch(120/200) Learning Rate 0.0035945003901000985:
+Training loss:1.08 acc_avg:99.687% acc:99.745% time:181s
+Testing loss:1.339 acc_avg:82.297% acc:84.143% time:16s [best test acc: 84.768%] 
+
+
+Epoch(121/200) Learning Rate 0.0035203658778440146:
+Training loss:1.08 acc_avg:99.815% acc:99.781% time:181s
+Testing loss:1.362 acc_avg:82.008% acc:83.865% time:16s [best test acc: 84.768%] 
+
+
+Epoch(122/200) Learning Rate 0.003446608779919163:
+Training loss:1.078 acc_avg:99.818% acc:99.851% time:181s
+Testing loss:1.345 acc_avg:82.297% acc:84.004% time:16s [best test acc: 84.768%] 
+
+
+Epoch(123/200) Learning Rate 0.0033732472947858106:
+Training loss:1.078 acc_avg:99.859% acc:99.877% time:182s
+Testing loss:1.359 acc_avg:82.346% acc:84.247% time:16s [best test acc: 84.768%] 
+
+
+Epoch(124/200) Learning Rate 0.0033002995232926805:
+Training loss:1.078 acc_avg:99.797% acc:99.798% time:181s
+Testing loss:1.339 acc_avg:82.451% acc:84.559% time:16s [best test acc: 84.768%] 
+
+
+Epoch(125/200) Learning Rate 0.003227783464210848:
+Training loss:1.078 acc_avg:99.811% acc:99.816% time:181s
+Testing loss:1.344 acc_avg:82.222% acc:84.421% time:16s [best test acc: 84.768%] 
+
+
+Epoch(126/200) Learning Rate 0.0031557170097928095:
+Training loss:1.076 acc_avg:99.869% acc:99.868% time:181s
+Testing loss:1.351 acc_avg:82.193% acc:84.143% time:16s [best test acc: 84.768%] 
+
+
+Epoch(127/200) Learning Rate 0.003084117941357838:
+Training loss:1.078 acc_avg:99.747% acc:99.789% time:181s
+Testing loss:1.348 acc_avg:82.709% acc:84.594% time:16s [best test acc: 84.768%] 
+
+
+Epoch(128/200) Learning Rate 0.0030130039249047142:
+Training loss:1.075 acc_avg:99.83% acc:99.851% time:181s
+Testing loss:1.344 acc_avg:82.414% acc:84.421% time:16s [best test acc: 84.768%] 
+
+
+Epoch(129/200) Learning Rate 0.002942392506752893:
+Training loss:1.077 acc_avg:99.734% acc:99.798% time:181s
+Testing loss:1.364 acc_avg:82.248% acc:83.9% time:16s [best test acc: 84.768%] 
+
+
+Epoch(130/200) Learning Rate 0.0028723011092132225:
+Training loss:1.076 acc_avg:99.813% acc:99.833% time:181s
+Testing loss:1.35 acc_avg:82.869% acc:84.49% time:16s [best test acc: 84.768%] 
+
+
+Epoch(131/200) Learning Rate 0.0028027470262892464:
+Training loss:1.075 acc_avg:99.883% acc:99.877% time:181s
+Testing loss:1.353 acc_avg:83.455% acc:84.976% time:16s [best test acc: 84.976%] 
+
+
+Epoch(132/200) Learning Rate 0.0027337474194101654:
+Training loss:1.076 acc_avg:99.778% acc:99.781% time:181s
+Testing loss:1.363 acc_avg:82.184% acc:84.074% time:16s [best test acc: 84.976%] 
+
+
+Epoch(133/200) Learning Rate 0.002665319313196511:
+Training loss:1.075 acc_avg:99.847% acc:99.851% time:181s
+Testing loss:1.359 acc_avg:82.207% acc:84.039% time:16s [best test acc: 84.976%] 
+
+
+Epoch(134/200) Learning Rate 0.0025974795912595845:
+Training loss:1.076 acc_avg:99.896% acc:99.868% time:181s
+Testing loss:1.345 acc_avg:82.208% acc:84.212% time:16s [best test acc: 84.976%] 
+
+
+Epoch(135/200) Learning Rate 0.002530244992035664:
+Training loss:1.075 acc_avg:99.838% acc:99.842% time:181s
+Testing loss:1.338 acc_avg:83.048% acc:84.837% time:16s [best test acc: 84.976%] 
+
+
+Epoch(136/200) Learning Rate 0.0024636321046560554:
+Training loss:1.074 acc_avg:99.934% acc:99.939% time:182s
+Testing loss:1.337 acc_avg:83.147% acc:84.941% time:16s [best test acc: 84.976%] 
+
+
+Epoch(137/200) Learning Rate 0.0023976573648539674:
+Training loss:1.072 acc_avg:99.918% acc:99.912% time:181s
+Testing loss:1.348 acc_avg:82.222% acc:84.282% time:16s [best test acc: 84.976%] 
+
+
+Epoch(138/200) Learning Rate 0.002332337050909249:
+Training loss:1.075 acc_avg:99.845% acc:99.833% time:181s
+Testing loss:1.366 acc_avg:82.178% acc:84.282% time:16s [best test acc: 84.976%] 
+
+
+Epoch(139/200) Learning Rate 0.0022676872796319547:
+Training loss:1.074 acc_avg:99.929% acc:99.93% time:182s
+Testing loss:1.349 acc_avg:82.211% acc:84.143% time:16s [best test acc: 84.976%] 
+
+
+Epoch(140/200) Learning Rate 0.002203724002385773:
+Training loss:1.074 acc_avg:99.802% acc:99.824% time:181s
+Testing loss:1.34 acc_avg:82.731% acc:84.837% time:16s [best test acc: 84.976%] 
+
+
+Epoch(141/200) Learning Rate 0.00214046300115226:
+Training loss:1.074 acc_avg:99.895% acc:99.903% time:181s
+Testing loss:1.343 acc_avg:82.974% acc:84.941% time:16s [best test acc: 84.976%] 
+
+
+Epoch(142/200) Learning Rate 0.002077919884636876:
+Training loss:1.073 acc_avg:99.875% acc:99.895% time:181s
+Testing loss:1.341 acc_avg:82.58% acc:84.941% time:16s [best test acc: 84.976%] 
+
+
+Epoch(143/200) Learning Rate 0.0020161100844177673:
+Training loss:1.073 acc_avg:99.89% acc:99.903% time:181s
+Testing loss:1.342 acc_avg:83.032% acc:84.941% time:16s [best test acc: 84.976%] 
+
+
+Epoch(144/200) Learning Rate 0.0019550488511382606:
+Training loss:1.073 acc_avg:99.952% acc:99.939% time:181s
+Testing loss:1.342 acc_avg:82.9% acc:84.976% time:16s [best test acc: 84.976%] 
+
+
+Epoch(145/200) Learning Rate 0.001894751250743987:
+Training loss:1.073 acc_avg:99.884% acc:99.903% time:182s
+Testing loss:1.338 acc_avg:83.057% acc:84.872% time:16s [best test acc: 84.976%] 
+
+
+Epoch(146/200) Learning Rate 0.0018352321607655927:
+Training loss:1.072 acc_avg:99.928% acc:99.903% time:181s
+Testing loss:1.346 acc_avg:82.738% acc:84.49% time:16s [best test acc: 84.976%] 
+
+
+Epoch(147/200) Learning Rate 0.0017765062666479253:
+Training loss:1.072 acc_avg:99.915% acc:99.939% time:182s
+Testing loss:1.342 acc_avg:82.526% acc:84.698% time:16s [best test acc: 84.976%] 
+
+
+Epoch(148/200) Learning Rate 0.0017185880581266227:
+Training loss:1.072 acc_avg:99.915% acc:99.895% time:182s
+Testing loss:1.34 acc_avg:83.586% acc:85.01% time:16s [best test acc: 85.01%] 
+
+
+Epoch(149/200) Learning Rate 0.001661491825652992:
+Training loss:1.072 acc_avg:99.905% acc:99.921% time:181s
+Testing loss:1.356 acc_avg:82.696% acc:84.525% time:16s [best test acc: 85.01%] 
+
+
+Epoch(150/200) Learning Rate 0.0016052316568680453:
+Training loss:1.072 acc_avg:99.891% acc:99.886% time:181s
+Testing loss:1.34 acc_avg:83.325% acc:84.941% time:16s [best test acc: 85.01%] 
+
+
+Epoch(151/200) Learning Rate 0.0015498214331265913:
+Training loss:1.071 acc_avg:99.928% acc:99.947% time:181s
+Testing loss:1.353 acc_avg:82.107% acc:84.212% time:16s [best test acc: 85.01%] 
+
+
+Epoch(152/200) Learning Rate 0.0014952748260722171:
+Training loss:1.071 acc_avg:99.939% acc:99.947% time:181s
+Testing loss:1.339 acc_avg:82.359% acc:84.143% time:16s [best test acc: 85.01%] 
+
+
+Epoch(153/200) Learning Rate 0.001441605294264015:
+Training loss:1.071 acc_avg:99.952% acc:99.947% time:182s
+Testing loss:1.344 acc_avg:82.791% acc:84.663% time:16s [best test acc: 85.01%] 
+
+
+Epoch(154/200) Learning Rate 0.0013888260798558827:
+Training loss:1.072 acc_avg:99.92% acc:99.939% time:181s
+Testing loss:1.348 acc_avg:82.557% acc:84.178% time:16s [best test acc: 85.01%] 
+
+
+Epoch(155/200) Learning Rate 0.001336950205329226:
+Training loss:1.071 acc_avg:99.924% acc:99.939% time:181s
+Testing loss:1.342 acc_avg:82.851% acc:84.802% time:16s [best test acc: 85.01%] 
+
+
+Epoch(156/200) Learning Rate 0.001285990470279848:
+Training loss:1.07 acc_avg:99.927% acc:99.939% time:181s
+Testing loss:1.338 acc_avg:82.741% acc:84.559% time:16s [best test acc: 85.01%] 
+
+
+Epoch(157/200) Learning Rate 0.0012359594482598446:
+Training loss:1.071 acc_avg:99.965% acc:99.956% time:181s
+Testing loss:1.354 acc_avg:82.506% acc:84.247% time:16s [best test acc: 85.01%] 
+
+
+Epoch(158/200) Learning Rate 0.0011868694836752694:
+Training loss:1.07 acc_avg:99.934% acc:99.939% time:181s
+Testing loss:1.343 acc_avg:82.248% acc:84.282% time:16s [best test acc: 85.01%] 
+
+
+Epoch(159/200) Learning Rate 0.0011387326887403332:
+Training loss:1.071 acc_avg:99.917% acc:99.93% time:181s
+Testing loss:1.34 acc_avg:82.305% acc:84.178% time:16s [best test acc: 85.01%] 
+
+
+Epoch(160/200) Learning Rate 0.0010915609404889024:
+Training loss:1.07 acc_avg:99.959% acc:99.956% time:182s
+Testing loss:1.345 acc_avg:82.586% acc:84.316% time:16s [best test acc: 85.01%] 
+
+
+Epoch(161/200) Learning Rate 0.0010453658778440114:
+Training loss:1.07 acc_avg:99.935% acc:99.939% time:181s
+Testing loss:1.345 acc_avg:82.8% acc:84.316% time:16s [best test acc: 85.01%] 
+
+
+Epoch(162/200) Learning Rate 0.0010001588987461354:
+Training loss:1.07 acc_avg:99.92% acc:99.947% time:182s
+Testing loss:1.338 acc_avg:82.936% acc:84.525% time:16s [best test acc: 85.01%] 
+
+
+Epoch(163/200) Learning Rate 0.0009559511573409202:
+Training loss:1.071 acc_avg:99.893% acc:99.886% time:182s
+Testing loss:1.344 acc_avg:82.98% acc:84.872% time:16s [best test acc: 85.01%] 
+
+
+Epoch(164/200) Learning Rate 0.0009127535612270639:
+Training loss:1.071 acc_avg:99.944% acc:99.947% time:181s
+Testing loss:1.353 acc_avg:82.218% acc:84.386% time:16s [best test acc: 85.01%] 
+
+
+Epoch(165/200) Learning Rate 0.0008705767687650271:
+Training loss:1.071 acc_avg:99.952% acc:99.965% time:182s
+Testing loss:1.349 acc_avg:82.792% acc:84.594% time:16s [best test acc: 85.01%] 
+
+
+Epoch(166/200) Learning Rate 0.0008294311864472454:
+Training loss:1.07 acc_avg:99.96% acc:99.956% time:181s
+Testing loss:1.34 acc_avg:82.436% acc:84.178% time:16s [best test acc: 85.01%] 
+
+
+Epoch(167/200) Learning Rate 0.0007893269663304789:
+Training loss:1.07 acc_avg:99.947% acc:99.956% time:181s
+Testing loss:1.353 acc_avg:82.632% acc:84.837% time:16s [best test acc: 85.01%] 
+
+
+Epoch(168/200) Learning Rate 0.0007502740035309535:
+Training loss:1.069 acc_avg:99.981% acc:99.974% time:181s
+Testing loss:1.346 acc_avg:82.999% acc:84.976% time:16s [best test acc: 85.01%] 
+
+
+Epoch(169/200) Learning Rate 0.0007122819337828757:
+Training loss:1.069 acc_avg:99.96% acc:99.956% time:181s
+Testing loss:1.349 acc_avg:82.443% acc:84.386% time:16s [best test acc: 85.01%] 
+
+
+Epoch(170/200) Learning Rate 0.0006753601310609678:
+Training loss:1.07 acc_avg:99.946% acc:99.921% time:181s
+Testing loss:1.337 acc_avg:83.23% acc:84.976% time:16s [best test acc: 85.01%] 
+
+
+Epoch(171/200) Learning Rate 0.0006395177052675799:
+Training loss:1.069 acc_avg:99.921% acc:99.939% time:181s
+Testing loss:1.332 acc_avg:82.896% acc:84.663% time:16s [best test acc: 85.01%] 
+
+
+Epoch(172/200) Learning Rate 0.0006047634999849535:
+Training loss:1.07 acc_avg:99.973% acc:99.974% time:182s
+Testing loss:1.33 acc_avg:83.267% acc:85.045% time:16s [best test acc: 85.045%] 
+
+
+Epoch(173/200) Learning Rate 0.0005711060902932046:
+Training loss:1.07 acc_avg:99.898% acc:99.912% time:182s
+Testing loss:1.339 acc_avg:82.36% acc:84.421% time:16s [best test acc: 85.045%] 
+
+
+Epoch(174/200) Learning Rate 0.0005385537806545473:
+Training loss:1.069 acc_avg:99.959% acc:99.956% time:181s
+Testing loss:1.354 acc_avg:83.033% acc:84.768% time:16s [best test acc: 85.045%] 
+
+
+Epoch(175/200) Learning Rate 0.0005071146028642949:
+Training loss:1.069 acc_avg:99.961% acc:99.965% time:181s
+Testing loss:1.336 acc_avg:83.132% acc:84.941% time:16s [best test acc: 85.045%] 
+
+
+Epoch(176/200) Learning Rate 0.0004767963140691321:
+Training loss:1.07 acc_avg:99.906% acc:99.912% time:182s
+Testing loss:1.333 acc_avg:83.069% acc:84.768% time:16s [best test acc: 85.045%] 
+
+
+Epoch(177/200) Learning Rate 0.00044760639485315616:
+Training loss:1.07 acc_avg:99.945% acc:99.939% time:182s
+Testing loss:1.34 acc_avg:82.635% acc:84.421% time:16s [best test acc: 85.045%] 
+
+
+Epoch(178/200) Learning Rate 0.0004195520473921568:
+Training loss:1.069 acc_avg:99.985% acc:99.982% time:181s
+Testing loss:1.345 acc_avg:82.417% acc:84.421% time:16s [best test acc: 85.045%] 
+
+
+Epoch(179/200) Learning Rate 0.00039264019367658425:
+Training loss:1.07 acc_avg:99.923% acc:99.921% time:181s
+Testing loss:1.34 acc_avg:82.873% acc:84.802% time:16s [best test acc: 85.045%] 
+
+
+Epoch(180/200) Learning Rate 0.000366877473803651:
+Training loss:1.07 acc_avg:99.945% acc:99.93% time:181s
+Testing loss:1.336 acc_avg:83.575% acc:85.115% time:16s [best test acc: 85.115%] 
+
+
+Epoch(181/200) Learning Rate 0.0003422702443389902:
+Training loss:1.069 acc_avg:99.924% acc:99.921% time:181s
+Testing loss:1.336 acc_avg:82.883% acc:84.698% time:16s [best test acc: 85.115%] 
+
+
+Epoch(182/200) Learning Rate 0.0003188245767482661:
+Training loss:1.07 acc_avg:99.886% acc:99.903% time:181s
+Testing loss:1.344 acc_avg:82.581% acc:84.49% time:16s [best test acc: 85.115%] 
+
+
+Epoch(183/200) Learning Rate 0.0002965462558991326:
+Training loss:1.069 acc_avg:99.948% acc:99.947% time:181s
+Testing loss:1.339 acc_avg:82.842% acc:84.594% time:16s [best test acc: 85.115%] 
+
+
+Epoch(184/200) Learning Rate 0.00027544077863390025:
+Training loss:1.069 acc_avg:99.929% acc:99.947% time:181s
+Testing loss:1.341 acc_avg:82.551% acc:84.629% time:16s [best test acc: 85.115%] 
+
+
+Epoch(185/200) Learning Rate 0.0002555133524132769:
+Training loss:1.068 acc_avg:99.906% acc:99.921% time:181s
+Testing loss:1.334 acc_avg:83.183% acc:84.768% time:16s [best test acc: 85.115%] 
+
+
+Epoch(186/200) Learning Rate 0.00023676889403150122:
+Training loss:1.069 acc_avg:99.968% acc:99.956% time:181s
+Testing loss:1.341 acc_avg:82.824% acc:84.663% time:16s [best test acc: 85.115%] 
+
+
+Epoch(187/200) Learning Rate 0.0002192120284032009:
+Training loss:1.07 acc_avg:99.953% acc:99.965% time:181s
+Testing loss:1.333 acc_avg:83.528% acc:85.219% time:16s [best test acc: 85.219%] 
+
+
+Epoch(188/200) Learning Rate 0.00020284708742225913:
+Training loss:1.069 acc_avg:99.935% acc:99.965% time:181s
+Testing loss:1.336 acc_avg:82.764% acc:84.525% time:16s [best test acc: 85.219%] 
+
+
+Epoch(189/200) Learning Rate 0.00018767810889299097:
+Training loss:1.07 acc_avg:99.895% acc:99.903% time:181s
+Testing loss:1.357 acc_avg:82.859% acc:84.802% time:16s [best test acc: 85.219%] 
+
+
+Epoch(190/200) Learning Rate 0.00017370883553386948:
+Training loss:1.07 acc_avg:99.937% acc:99.939% time:181s
+Testing loss:1.339 acc_avg:82.928% acc:84.976% time:16s [best test acc: 85.219%] 
+
+
+Epoch(191/200) Learning Rate 0.00016094271405406869:
+Training loss:1.069 acc_avg:99.97% acc:99.956% time:181s
+Testing loss:1.338 acc_avg:83.084% acc:84.698% time:16s [best test acc: 85.219%] 
+
+
+Epoch(192/200) Learning Rate 0.00014938289430304027:
+Training loss:1.069 acc_avg:99.935% acc:99.965% time:181s
+Testing loss:1.339 acc_avg:82.878% acc:84.594% time:16s [best test acc: 85.219%] 
+
+
+Epoch(193/200) Learning Rate 0.00013903222849333513:
+Training loss:1.068 acc_avg:99.957% acc:99.965% time:181s
+Testing loss:1.344 acc_avg:83.046% acc:84.976% time:16s [best test acc: 85.219%] 
+
+
+Epoch(194/200) Learning Rate 0.00012989327049686106:
+Training loss:1.069 acc_avg:99.864% acc:99.903% time:181s
+Testing loss:1.337 acc_avg:83.424% acc:84.941% time:16s [best test acc: 85.219%] 
+
+
+Epoch(195/200) Learning Rate 0.00012196827521475406:
+Training loss:1.069 acc_avg:99.936% acc:99.939% time:181s
+Testing loss:1.337 acc_avg:82.604% acc:84.594% time:16s [best test acc: 85.219%] 
+
+
+Epoch(196/200) Learning Rate 0.0001152591980210166:
+Training loss:1.068 acc_avg:99.971% acc:99.956% time:182s
+Testing loss:1.335 acc_avg:82.625% acc:84.629% time:16s [best test acc: 85.219%] 
+
+
+Epoch(197/200) Learning Rate 0.0001097676942800558:
+Training loss:1.069 acc_avg:99.946% acc:99.939% time:181s
+Testing loss:1.339 acc_avg:82.667% acc:84.663% time:16s [best test acc: 85.219%] 
+
+
+Epoch(198/200) Learning Rate 0.00010549511893824899:
+Training loss:1.069 acc_avg:99.93% acc:99.939% time:181s
+Testing loss:1.354 acc_avg:82.791% acc:84.629% time:16s [best test acc: 85.219%] 
+
+
+Epoch(199/200) Learning Rate 0.00010244252618962859:
+Training loss:1.069 acc_avg:99.946% acc:99.956% time:181s
+Testing loss:1.337 acc_avg:83.251% acc:84.906% time:16s [best test acc: 85.219%] 
+
+
+Epoch(200/200) Learning Rate 0.0001006106692157801:
+Training loss:1.069 acc_avg:99.972% acc:99.974% time:181s
+Testing loss:1.332 acc_avg:83.631% acc:85.219% time:16s [best test acc: 85.219%] 
+
+
+++++++++++++++++Final results++++++++++++++++
+++  Last Train time: 181 | Last Test time: 16  ++
+++  Best Train loss: 1.068 | Best Test loss: 1.33  ++
+++  Best Train acc_B: 99.985 | Best Test acc_B: 83.631  ++
+++  Best Train acc: 99.982 | Best Test acc: 85.219  ++
+++++++++++++++++++++++++++++++++++++++++

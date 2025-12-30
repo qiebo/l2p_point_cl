@@ -1,0 +1,30 @@
+Label Remap Created: {8: 0, 30: 1, 0: 2, 4: 3, 2: 4, 37: 5, 22: 6, 33: 7, 35: 8, 5: 9, 21: 10, 36: 11, 26: 12, 25: 13, 7: 14, 12: 15, 14: 16, 23: 17, 16: 18, 17: 19, 28: 20, 3: 21, 9: 22, 34: 23, 15: 24, 20: 25, 18: 26, 11: 27, 1: 28, 29: 29, 19: 30, 31: 31, 13: 32, 27: 33, 39: 34, 32: 35, 24: 36, 38: 37, 10: 38, 6: 39}
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+Initializing Prompts for Task 0 using Data Centroids...
+ Assigning Centroid to Prompts [0:3]
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: 6.4827 | Val Acc (Linear): 0.9600 | Time: 26.46s ===>
+<=== Epoch: 1 | Loss: 1.8553 | Val Acc (Linear): 0.9700 | Time: 26.50s ===>
+<=== Epoch: 2 | Loss: 1.8464 | Val Acc (Linear): 0.9650 | Time: 26.41s ===>
+<=== Epoch: 3 | Loss: 1.8259 | Val Acc (Linear): 0.9550 | Time: 26.30s ===>
+<=== Epoch: 4 | Loss: 1.7930 | Val Acc (Linear): 0.9850 | Time: 26.65s ===>
+<=== Epoch: 5 | Loss: 1.8545 | Val Acc (Linear): 0.8750 | Time: 26.66s ===>
+<=== Epoch: 6 | Loss: 2.1375 | Val Acc (Linear): 0.9800 | Time: 27.62s ===>
+<=== Epoch: 7 | Loss: 2.0201 | Val Acc (Linear): 0.9850 | Time: 28.07s ===>
+<=== Epoch: 8 | Loss: 1.8539 | Val Acc (Linear): 0.9250 | Time: 27.36s ===>
+<=== Epoch: 9 | Loss: 2.0860 | Val Acc (Linear): 0.9850 | Time: 27.44s ===>
+<=== Epoch: 10 | Loss: 1.7227 | Val Acc (Linear): 0.9850 | Time: 26.79s ===>
+<=== Epoch: 11 | Loss: 1.7412 | Val Acc (Linear): 0.9900 | Time: 27.40s ===>
+<=== Epoch: 12 | Loss: 1.7302 | Val Acc (Linear): 0.9300 | Time: 26.84s ===>
+<=== Epoch: 13 | Loss: 1.7462 | Val Acc (Linear): 0.9850 | Time: 26.54s ===>
+<=== Epoch: 14 | Loss: 1.8147 | Val Acc (Linear): 0.9850 | Time: 26.94s ===>
+<=== Epoch: 15 | Loss: 1.6914 | Val Acc (Linear): 0.9700 | Time: 27.03s ===>
+<=== Epoch: 16 | Loss: 2.0254 | Val Acc (Linear): 0.9850 | Time: 26.67s ===>

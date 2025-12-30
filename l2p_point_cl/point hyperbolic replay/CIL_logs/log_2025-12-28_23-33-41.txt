@@ -1,0 +1,43 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: 12.4481 | Val Acc (Linear): 0.7450 | Time: 33.47s ===>
+<=== Epoch: 1 | Loss: 9.0296 | Val Acc (Linear): 0.8750 | Time: 21.95s ===>
+<=== Epoch: 2 | Loss: 3.1892 | Val Acc (Linear): 0.9500 | Time: 21.74s ===>
+<=== Epoch: 3 | Loss: 0.5592 | Val Acc (Linear): 0.9700 | Time: 21.94s ===>
+<=== Epoch: 4 | Loss: 0.5170 | Val Acc (Linear): 0.9350 | Time: 21.85s ===>
+<=== Epoch: 5 | Loss: 5.2577 | Val Acc (Linear): 0.9550 | Time: 23.25s ===>
+<=== Epoch: 6 | Loss: 0.3711 | Val Acc (Linear): 0.9050 | Time: 21.95s ===>
+<=== Epoch: 7 | Loss: 0.3267 | Val Acc (Linear): 0.9550 | Time: 22.24s ===>
+<=== Epoch: 8 | Loss: 0.5081 | Val Acc (Linear): 0.9850 | Time: 21.95s ===>
+<=== Epoch: 9 | Loss: 0.4816 | Val Acc (Linear): 0.9800 | Time: 21.81s ===>
+<=== Epoch: 10 | Loss: 0.2879 | Val Acc (Linear): 0.9600 | Time: 21.82s ===>
+<=== Epoch: 11 | Loss: 0.2714 | Val Acc (Linear): 0.9700 | Time: 21.90s ===>
+<=== Epoch: 12 | Loss: 0.4329 | Val Acc (Linear): 0.9550 | Time: 21.89s ===>
+<=== Epoch: 13 | Loss: 0.3581 | Val Acc (Linear): 0.9650 | Time: 22.49s ===>
+<=== Epoch: 14 | Loss: 0.5233 | Val Acc (Linear): 0.9200 | Time: 23.02s ===>
+<=== Epoch: 15 | Loss: 0.4538 | Val Acc (Linear): 0.9850 | Time: 21.99s ===>
+<=== Epoch: 16 | Loss: 0.2332 | Val Acc (Linear): 0.9850 | Time: 21.70s ===>
+<=== Epoch: 17 | Loss: 0.0747 | Val Acc (Linear): 0.9750 | Time: 21.88s ===>
+<=== Epoch: 18 | Loss: 0.0686 | Val Acc (Linear): 0.9550 | Time: 22.56s ===>
+<=== Epoch: 19 | Loss: 0.1660 | Val Acc (Linear): 0.9850 | Time: 22.44s ===>
+<=== Epoch: 20 | Loss: 0.1539 | Val Acc (Linear): 0.9800 | Time: 21.92s ===>
+<=== Epoch: 21 | Loss: 0.0939 | Val Acc (Linear): 0.9850 | Time: 22.48s ===>
+<=== Epoch: 22 | Loss: 0.1376 | Val Acc (Linear): 0.9800 | Time: 21.78s ===>
+<=== Epoch: 23 | Loss: 0.1431 | Val Acc (Linear): 0.9750 | Time: 21.73s ===>
+<=== Epoch: 24 | Loss: 0.3012 | Val Acc (Linear): 0.9800 | Time: 21.82s ===>
+<=== Epoch: 25 | Loss: 0.0766 | Val Acc (Linear): 0.9800 | Time: 21.89s ===>
+<=== Epoch: 26 | Loss: 0.1852 | Val Acc (Linear): 0.9750 | Time: 21.64s ===>
+<=== Epoch: 27 | Loss: 0.0628 | Val Acc (Linear): 0.9900 | Time: 22.15s ===>
+<=== Epoch: 28 | Loss: 0.0167 | Val Acc (Linear): 0.9850 | Time: 22.22s ===>
+<=== Epoch: 29 | Loss: 0.0635 | Val Acc (Linear): 0.9900 | Time: 22.19s ===>
+Task 0 Training Completed.
+Computing Prototypes (Hyperbolic NCM) for current task...
+Error in Task 0: expand(torch.FloatTensor{[1, 1024]}, size=[26624]): the number of sizes provided (1) must be greater or equal to the number of dimensions in the tensor (2)

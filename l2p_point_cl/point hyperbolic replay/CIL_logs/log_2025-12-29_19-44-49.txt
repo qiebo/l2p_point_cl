@@ -1,0 +1,22 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: 3.9792 | Val Acc (Linear): 0.8300 | Time: 77.09s ===>
+<=== Epoch: 1 | Loss: 4.1716 | Val Acc (Linear): 0.5900 | Time: 21.74s ===>
+<=== Epoch: 2 | Loss: 3.2122 | Val Acc (Linear): 0.9500 | Time: 21.69s ===>
+<=== Epoch: 3 | Loss: 0.2334 | Val Acc (Linear): 0.9850 | Time: 21.51s ===>
+<=== Epoch: 4 | Loss: 0.3293 | Val Acc (Linear): 0.7650 | Time: 21.38s ===>
+<=== Epoch: 5 | Loss: 5.3789 | Val Acc (Linear): 0.9600 | Time: 21.35s ===>
+<=== Epoch: 6 | Loss: 0.2329 | Val Acc (Linear): 0.9500 | Time: 21.38s ===>
+<=== Epoch: 7 | Loss: 0.1985 | Val Acc (Linear): 0.9900 | Time: 21.50s ===>
+<=== Epoch: 8 | Loss: 0.2061 | Val Acc (Linear): 0.9800 | Time: 21.44s ===>
+<=== Epoch: 9 | Loss: 0.2173 | Val Acc (Linear): 0.9850 | Time: 21.46s ===>
+<=== Epoch: 10 | Loss: 0.1334 | Val Acc (Linear): 0.9750 | Time: 21.66s ===>
+<=== Epoch: 11 | Loss: 0.0504 | Val Acc (Linear): 0.9750 | Time: 22.61s ===>

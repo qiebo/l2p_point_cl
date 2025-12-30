@@ -1,0 +1,279 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: 3.9792 | Val Acc (Linear): 0.8300 | Time: 33.97s ===>
+<=== Epoch: 1 | Loss: 4.1716 | Val Acc (Linear): 0.5900 | Time: 22.20s ===>
+<=== Epoch: 2 | Loss: 3.2122 | Val Acc (Linear): 0.9500 | Time: 22.15s ===>
+<=== Epoch: 3 | Loss: 0.2334 | Val Acc (Linear): 0.9850 | Time: 22.26s ===>
+<=== Epoch: 4 | Loss: 0.3293 | Val Acc (Linear): 0.7650 | Time: 22.53s ===>
+<=== Epoch: 5 | Loss: 5.3789 | Val Acc (Linear): 0.9600 | Time: 22.19s ===>
+<=== Epoch: 6 | Loss: 0.2329 | Val Acc (Linear): 0.9500 | Time: 22.64s ===>
+<=== Epoch: 7 | Loss: 0.1985 | Val Acc (Linear): 0.9900 | Time: 22.54s ===>
+<=== Epoch: 8 | Loss: 0.2061 | Val Acc (Linear): 0.9800 | Time: 22.52s ===>
+<=== Epoch: 9 | Loss: 0.2173 | Val Acc (Linear): 0.9850 | Time: 22.58s ===>
+<=== Epoch: 10 | Loss: 0.1334 | Val Acc (Linear): 0.9750 | Time: 22.79s ===>
+<=== Epoch: 11 | Loss: 0.0504 | Val Acc (Linear): 0.9750 | Time: 22.62s ===>
+<=== Epoch: 12 | Loss: 0.2719 | Val Acc (Linear): 0.9750 | Time: 22.47s ===>
+<=== Epoch: 13 | Loss: 0.1484 | Val Acc (Linear): 0.9750 | Time: 23.71s ===>
+<=== Epoch: 14 | Loss: 0.0765 | Val Acc (Linear): 0.9650 | Time: 24.04s ===>
+<=== Epoch: 15 | Loss: 0.1689 | Val Acc (Linear): 0.9800 | Time: 25.02s ===>
+<=== Epoch: 16 | Loss: 0.2639 | Val Acc (Linear): 0.9800 | Time: 23.15s ===>
+<=== Epoch: 17 | Loss: 0.0907 | Val Acc (Linear): 0.9750 | Time: 23.48s ===>
+<=== Epoch: 18 | Loss: 0.0683 | Val Acc (Linear): 0.9650 | Time: 23.66s ===>
+<=== Epoch: 19 | Loss: 0.1238 | Val Acc (Linear): 0.9350 | Time: 23.23s ===>
+<=== Epoch: 20 | Loss: 0.3240 | Val Acc (Linear): 0.8800 | Time: 22.43s ===>
+<=== Epoch: 21 | Loss: 0.1997 | Val Acc (Linear): 0.9850 | Time: 22.59s ===>
+<=== Epoch: 22 | Loss: 0.0043 | Val Acc (Linear): 0.9850 | Time: 23.15s ===>
+<=== Epoch: 23 | Loss: 0.0040 | Val Acc (Linear): 0.9800 | Time: 22.42s ===>
+<=== Epoch: 24 | Loss: 0.0037 | Val Acc (Linear): 0.9800 | Time: 22.24s ===>
+<=== Epoch: 25 | Loss: 0.0035 | Val Acc (Linear): 0.9850 | Time: 22.17s ===>
+<=== Epoch: 26 | Loss: 0.0033 | Val Acc (Linear): 0.9900 | Time: 22.22s ===>
+<=== Epoch: 27 | Loss: 0.6516 | Val Acc (Linear): 0.9850 | Time: 22.15s ===>
+<=== Epoch: 28 | Loss: 0.3241 | Val Acc (Linear): 0.9850 | Time: 23.21s ===>
+<=== Epoch: 29 | Loss: 0.2535 | Val Acc (Linear): 0.9800 | Time: 23.27s ===>
+Task 0 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 2
+Validating with NCM...
+NCM Accuracy: 0.9500
+Task 0 Final CIL Accuracy (NCM): 0.9500
+Task 0 Linear Head Accuracy (For Reference): 0.9900
+
+==================== Task 1 ====================
+Training on Categories: ['airplane', 'bookshelf']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 1 Training ===================>
+<=== Epoch: 0 | Loss: 20.4237 | Val Acc (Linear): 0.3250 | Time: 25.14s ===>
+<=== Epoch: 1 | Loss: 0.5028 | Val Acc (Linear): 0.5000 | Time: 18.16s ===>
+<=== Epoch: 2 | Loss: 0.0633 | Val Acc (Linear): 0.4975 | Time: 17.35s ===>
+<=== Epoch: 3 | Loss: 0.1002 | Val Acc (Linear): 0.5000 | Time: 17.20s ===>
+<=== Epoch: 4 | Loss: 0.0909 | Val Acc (Linear): 0.5000 | Time: 17.15s ===>
+<=== Epoch: 5 | Loss: 0.1158 | Val Acc (Linear): 0.5000 | Time: 17.47s ===>
+<=== Epoch: 6 | Loss: 0.5705 | Val Acc (Linear): 0.5000 | Time: 18.24s ===>
+<=== Epoch: 7 | Loss: 0.1591 | Val Acc (Linear): 0.5000 | Time: 17.94s ===>
+<=== Epoch: 8 | Loss: 0.0522 | Val Acc (Linear): 0.5000 | Time: 17.31s ===>
+<=== Epoch: 9 | Loss: 0.0398 | Val Acc (Linear): 0.5000 | Time: 17.17s ===>
+<=== Epoch: 10 | Loss: 0.0419 | Val Acc (Linear): 0.5000 | Time: 17.02s ===>
+<=== Epoch: 11 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.48s ===>
+<=== Epoch: 12 | Loss: 0.0085 | Val Acc (Linear): 0.5000 | Time: 17.98s ===>
+<=== Epoch: 13 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.05s ===>
+<=== Epoch: 14 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.72s ===>
+<=== Epoch: 15 | Loss: 0.0022 | Val Acc (Linear): 0.5000 | Time: 17.12s ===>
+<=== Epoch: 16 | Loss: 0.0717 | Val Acc (Linear): 0.5000 | Time: 17.59s ===>
+<=== Epoch: 17 | Loss: 0.0356 | Val Acc (Linear): 0.5000 | Time: 18.35s ===>
+<=== Epoch: 18 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.59s ===>
+<=== Epoch: 19 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.34s ===>
+<=== Epoch: 20 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.93s ===>
+<=== Epoch: 21 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.08s ===>
+<=== Epoch: 22 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.25s ===>
+<=== Epoch: 23 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.19s ===>
+<=== Epoch: 24 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.71s ===>
+<=== Epoch: 25 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.51s ===>
+<=== Epoch: 26 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.45s ===>
+<=== Epoch: 27 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 17.80s ===>
+<=== Epoch: 28 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 18.05s ===>
+<=== Epoch: 29 | Loss: 0.0013 | Val Acc (Linear): 0.5000 | Time: 18.05s ===>
+Task 1 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 4
+Validating with NCM...
+NCM Accuracy: 0.9375
+Task 1 Final CIL Accuracy (NCM): 0.9375
+Task 1 Linear Head Accuracy (For Reference): 0.5000
+
+==================== Task 2 ====================
+Training on Categories: ['bed', 'vase']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 2 Training ===================>
+<=== Epoch: 0 | Loss: 30.4398 | Val Acc (Linear): 0.2433 | Time: 22.05s ===>
+<=== Epoch: 1 | Loss: 0.2331 | Val Acc (Linear): 0.3317 | Time: 15.40s ===>
+<=== Epoch: 2 | Loss: 0.1386 | Val Acc (Linear): 0.3017 | Time: 14.81s ===>
+<=== Epoch: 3 | Loss: 0.3282 | Val Acc (Linear): 0.3333 | Time: 13.93s ===>
+<=== Epoch: 4 | Loss: 0.0885 | Val Acc (Linear): 0.3333 | Time: 14.49s ===>
+<=== Epoch: 5 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.69s ===>
+<=== Epoch: 6 | Loss: 0.0016 | Val Acc (Linear): 0.3333 | Time: 15.19s ===>
+<=== Epoch: 7 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.48s ===>
+<=== Epoch: 8 | Loss: 0.0016 | Val Acc (Linear): 0.3333 | Time: 15.02s ===>
+<=== Epoch: 9 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.10s ===>
+<=== Epoch: 10 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.23s ===>
+<=== Epoch: 11 | Loss: 0.0017 | Val Acc (Linear): 0.3333 | Time: 14.09s ===>
+<=== Epoch: 12 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.07s ===>
+<=== Epoch: 13 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.10s ===>
+<=== Epoch: 14 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.12s ===>
+<=== Epoch: 15 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.10s ===>
+<=== Epoch: 16 | Loss: 0.0015 | Val Acc (Linear): 0.3317 | Time: 13.96s ===>
+<=== Epoch: 17 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.19s ===>
+<=== Epoch: 18 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.65s ===>
+<=== Epoch: 19 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.55s ===>
+<=== Epoch: 20 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.80s ===>
+<=== Epoch: 21 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.72s ===>
+<=== Epoch: 22 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.41s ===>
+<=== Epoch: 23 | Loss: 1.4560 | Val Acc (Linear): 0.3333 | Time: 14.02s ===>
+<=== Epoch: 24 | Loss: 0.2524 | Val Acc (Linear): 0.3317 | Time: 14.99s ===>
+<=== Epoch: 25 | Loss: 0.0462 | Val Acc (Linear): 0.3333 | Time: 14.14s ===>
+<=== Epoch: 26 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.07s ===>
+<=== Epoch: 27 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.06s ===>
+<=== Epoch: 28 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.03s ===>
+<=== Epoch: 29 | Loss: 0.0015 | Val Acc (Linear): 0.3333 | Time: 14.07s ===>
+Task 2 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 6
+Validating with NCM...
+NCM Accuracy: 0.8933
+Task 2 Final CIL Accuracy (NCM): 0.8933
+Task 2 Linear Head Accuracy (For Reference): 0.3333
+
+==================== Task 3 ====================
+Training on Categories: ['monitor', 'table']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 3 Training ===================>
+<=== Epoch: 0 | Loss: 43.9590 | Val Acc (Linear): 0.2500 | Time: 17.99s ===>
+<=== Epoch: 1 | Loss: 0.2456 | Val Acc (Linear): 0.2500 | Time: 11.90s ===>
+<=== Epoch: 2 | Loss: 0.0569 | Val Acc (Linear): 0.2162 | Time: 12.08s ===>
+<=== Epoch: 3 | Loss: 0.8490 | Val Acc (Linear): 0.2300 | Time: 12.06s ===>
+<=== Epoch: 4 | Loss: 0.6087 | Val Acc (Linear): 0.2462 | Time: 12.52s ===>
+<=== Epoch: 5 | Loss: 0.0825 | Val Acc (Linear): 0.2487 | Time: 12.32s ===>
+<=== Epoch: 6 | Loss: 0.0041 | Val Acc (Linear): 0.2500 | Time: 12.05s ===>
+<=== Epoch: 7 | Loss: 0.0518 | Val Acc (Linear): 0.2313 | Time: 12.21s ===>
+<=== Epoch: 8 | Loss: 0.1472 | Val Acc (Linear): 0.2487 | Time: 12.24s ===>
+<=== Epoch: 9 | Loss: 0.2847 | Val Acc (Linear): 0.2487 | Time: 12.28s ===>
+<=== Epoch: 10 | Loss: 0.2677 | Val Acc (Linear): 0.2500 | Time: 12.28s ===>
+<=== Epoch: 11 | Loss: 0.2048 | Val Acc (Linear): 0.2487 | Time: 12.29s ===>
+<=== Epoch: 12 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.11s ===>
+<=== Epoch: 13 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 11.97s ===>
+<=== Epoch: 14 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.08s ===>
+<=== Epoch: 15 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.45s ===>
+<=== Epoch: 16 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.10s ===>
+<=== Epoch: 17 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.12s ===>
+<=== Epoch: 18 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 11.95s ===>
+<=== Epoch: 19 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.06s ===>
+<=== Epoch: 20 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.05s ===>
+<=== Epoch: 21 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.55s ===>
+<=== Epoch: 22 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.22s ===>
+<=== Epoch: 23 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.37s ===>
+<=== Epoch: 24 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.32s ===>
+<=== Epoch: 25 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.11s ===>
+<=== Epoch: 26 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.06s ===>
+<=== Epoch: 27 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 11.95s ===>
+<=== Epoch: 28 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 11.96s ===>
+<=== Epoch: 29 | Loss: 0.0015 | Val Acc (Linear): 0.2500 | Time: 12.09s ===>
+Task 3 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 8
+Validating with NCM...
+NCM Accuracy: 0.8263
+Task 3 Final CIL Accuracy (NCM): 0.8263
+Task 3 Linear Head Accuracy (For Reference): 0.2500
+
+==================== Task 4 ====================
+Training on Categories: ['toilet', 'bottle']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet', 'bottle']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 4 Training ===================>
+<=== Epoch: 0 | Loss: 61.7353 | Val Acc (Linear): 0.1990 | Time: 14.27s ===>
+<=== Epoch: 1 | Loss: 0.0794 | Val Acc (Linear): 0.1980 | Time: 9.67s ===>
+<=== Epoch: 2 | Loss: 0.0312 | Val Acc (Linear): 0.2000 | Time: 9.68s ===>
+<=== Epoch: 3 | Loss: 0.0227 | Val Acc (Linear): 0.1980 | Time: 9.87s ===>
+<=== Epoch: 4 | Loss: 0.0167 | Val Acc (Linear): 0.1980 | Time: 10.04s ===>
+<=== Epoch: 5 | Loss: 0.0354 | Val Acc (Linear): 0.1990 | Time: 9.78s ===>
+<=== Epoch: 6 | Loss: 0.0112 | Val Acc (Linear): 0.1960 | Time: 10.09s ===>
+<=== Epoch: 7 | Loss: 0.0340 | Val Acc (Linear): 0.1920 | Time: 10.38s ===>
+<=== Epoch: 8 | Loss: 0.1868 | Val Acc (Linear): 0.2000 | Time: 10.00s ===>
+<=== Epoch: 9 | Loss: 0.6018 | Val Acc (Linear): 0.1840 | Time: 10.83s ===>
+<=== Epoch: 10 | Loss: 0.1397 | Val Acc (Linear): 0.1980 | Time: 10.24s ===>
+<=== Epoch: 11 | Loss: 0.0437 | Val Acc (Linear): 0.2000 | Time: 10.09s ===>
+<=== Epoch: 12 | Loss: 0.0013 | Val Acc (Linear): 0.1990 | Time: 10.25s ===>
+<=== Epoch: 13 | Loss: 0.0016 | Val Acc (Linear): 0.2000 | Time: 9.98s ===>
+<=== Epoch: 14 | Loss: 0.0552 | Val Acc (Linear): 0.1980 | Time: 9.77s ===>
+<=== Epoch: 15 | Loss: 0.0327 | Val Acc (Linear): 0.1990 | Time: 9.67s ===>
+<=== Epoch: 16 | Loss: 0.0115 | Val Acc (Linear): 0.1990 | Time: 9.57s ===>
+<=== Epoch: 17 | Loss: 0.0023 | Val Acc (Linear): 0.2000 | Time: 9.70s ===>
+<=== Epoch: 18 | Loss: 0.0014 | Val Acc (Linear): 0.2000 | Time: 10.28s ===>
+<=== Epoch: 19 | Loss: 0.0012 | Val Acc (Linear): 0.2000 | Time: 9.64s ===>
+<=== Epoch: 20 | Loss: 0.0012 | Val Acc (Linear): 0.2000 | Time: 9.64s ===>
+<=== Epoch: 21 | Loss: 0.0013 | Val Acc (Linear): 0.2000 | Time: 9.55s ===>
+<=== Epoch: 22 | Loss: 0.0012 | Val Acc (Linear): 0.1990 | Time: 9.62s ===>
+<=== Epoch: 23 | Loss: 0.0012 | Val Acc (Linear): 0.2000 | Time: 10.15s ===>
+<=== Epoch: 24 | Loss: 0.0015 | Val Acc (Linear): 0.1990 | Time: 9.70s ===>
+<=== Epoch: 25 | Loss: 0.3232 | Val Acc (Linear): 0.1970 | Time: 10.06s ===>
+<=== Epoch: 26 | Loss: 0.0717 | Val Acc (Linear): 0.1970 | Time: 9.71s ===>
+<=== Epoch: 27 | Loss: 0.0229 | Val Acc (Linear): 0.1970 | Time: 9.64s ===>
+<=== Epoch: 28 | Loss: 0.0687 | Val Acc (Linear): 0.1970 | Time: 9.75s ===>
+<=== Epoch: 29 | Loss: 0.0526 | Val Acc (Linear): 0.1990 | Time: 9.63s ===>
+Task 4 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 10
+Validating with NCM...
+NCM Accuracy: 0.6500
+Task 4 Final CIL Accuracy (NCM): 0.6500
+Task 4 Linear Head Accuracy (For Reference): 0.2000
+
+==================== Task 5 ====================
+Training on Categories: ['mantel', 'tv_stand']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet', 'bottle', 'mantel', 'tv_stand']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 5 Training ===================>
+<=== Epoch: 0 | Loss: 56.6298 | Val Acc (Linear): 0.1408 | Time: 11.63s ===>
+<=== Epoch: 1 | Loss: 1.4890 | Val Acc (Linear): 0.1608 | Time: 7.84s ===>
+<=== Epoch: 2 | Loss: 1.8292 | Val Acc (Linear): 0.1642 | Time: 8.06s ===>
+<=== Epoch: 3 | Loss: 0.6311 | Val Acc (Linear): 0.1550 | Time: 7.81s ===>
+<=== Epoch: 4 | Loss: 0.9555 | Val Acc (Linear): 0.1633 | Time: 7.88s ===>
+<=== Epoch: 5 | Loss: 0.2663 | Val Acc (Linear): 0.1492 | Time: 7.82s ===>
+<=== Epoch: 6 | Loss: 1.7807 | Val Acc (Linear): 0.1492 | Time: 7.79s ===>
+<=== Epoch: 7 | Loss: 0.3871 | Val Acc (Linear): 0.1617 | Time: 7.77s ===>
+<=== Epoch: 8 | Loss: 0.2240 | Val Acc (Linear): 0.1650 | Time: 8.07s ===>
+<=== Epoch: 9 | Loss: 0.6728 | Val Acc (Linear): 0.1650 | Time: 9.07s ===>
+<=== Epoch: 10 | Loss: 0.9844 | Val Acc (Linear): 0.1617 | Time: 8.33s ===>
+<=== Epoch: 11 | Loss: 0.7988 | Val Acc (Linear): 0.1575 | Time: 8.10s ===>
+<=== Epoch: 12 | Loss: 2.2446 | Val Acc (Linear): 0.1567 | Time: 7.79s ===>
+<=== Epoch: 13 | Loss: 1.9902 | Val Acc (Linear): 0.1650 | Time: 7.86s ===>
+<=== Epoch: 14 | Loss: 0.3125 | Val Acc (Linear): 0.1633 | Time: 7.87s ===>
+<=== Epoch: 15 | Loss: 0.3595 | Val Acc (Linear): 0.1642 | Time: 7.98s ===>
+<=== Epoch: 16 | Loss: 0.2388 | Val Acc (Linear): 0.1650 | Time: 7.88s ===>
+<=== Epoch: 17 | Loss: 0.4672 | Val Acc (Linear): 0.1633 | Time: 7.97s ===>
+<=== Epoch: 18 | Loss: 0.3704 | Val Acc (Linear): 0.1567 | Time: 8.74s ===>
+<=== Epoch: 19 | Loss: 0.4127 | Val Acc (Linear): 0.1642 | Time: 8.05s ===>
+<=== Epoch: 20 | Loss: 0.3842 | Val Acc (Linear): 0.1633 | Time: 7.89s ===>
+<=== Epoch: 21 | Loss: 0.1879 | Val Acc (Linear): 0.1642 | Time: 7.70s ===>
+<=== Epoch: 22 | Loss: 0.2209 | Val Acc (Linear): 0.1642 | Time: 8.07s ===>
+<=== Epoch: 23 | Loss: 0.1377 | Val Acc (Linear): 0.1642 | Time: 8.33s ===>
+<=== Epoch: 24 | Loss: 0.6465 | Val Acc (Linear): 0.1600 | Time: 8.28s ===>
+<=== Epoch: 25 | Loss: 0.1570 | Val Acc (Linear): 0.1642 | Time: 8.04s ===>
+<=== Epoch: 26 | Loss: 0.1568 | Val Acc (Linear): 0.1650 | Time: 8.20s ===>
+<=== Epoch: 27 | Loss: 0.4542 | Val Acc (Linear): 0.1617 | Time: 8.49s ===>
+<=== Epoch: 28 | Loss: 0.6197 | Val Acc (Linear): 0.1642 | Time: 8.07s ===>
+<=== Epoch: 29 | Loss: 0.1603 | Val Acc (Linear): 0.1592 | Time: 8.40s ===>
+Task 5 Training Completed.
+Computing Prototypes (NCM) for current task...
+Prototypes updated. Total classes stored: 12
+Validating with NCM...
+NCM Accuracy: 0.5542
+Task 5 Final CIL Accuracy (NCM): 0.5542
+Task 5 Linear Head Accuracy (For Reference): 0.1650
+
+==================== Task 6 ====================
+Training on Categories: ['plant', 'piano']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet', 'bottle', 'mantel', 'tv_stand', 'plant', 'piano']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 6 Training ===================>
+<=== Epoch: 0 | Loss: 68.8610 | Val Acc (Linear): 0.1343 | Time: 10.65s ===>
+<=== Epoch: 1 | Loss: 2.6034 | Val Acc (Linear): 0.1400 | Time: 6.74s ===>
+<=== Epoch: 2 | Loss: 0.2473 | Val Acc (Linear): 0.1329 | Time: 6.67s ===>
+<=== Epoch: 3 | Loss: 0.0741 | Val Acc (Linear): 0.1429 | Time: 6.75s ===>
+<=== Epoch: 4 | Loss: 0.0447 | Val Acc (Linear): 0.1407 | Time: 6.68s ===>

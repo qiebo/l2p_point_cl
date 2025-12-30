@@ -1,0 +1,87 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: 3.9792 | Val Acc: 0.8300 | Time: 34.01s ===>
+<=== Epoch: 1 | Loss: 4.1716 | Val Acc: 0.5900 | Time: 21.92s ===>
+<=== Epoch: 2 | Loss: 3.2122 | Val Acc: 0.9500 | Time: 21.94s ===>
+<=== Epoch: 3 | Loss: 0.2334 | Val Acc: 0.9850 | Time: 21.97s ===>
+<=== Epoch: 4 | Loss: 0.3293 | Val Acc: 0.7650 | Time: 21.95s ===>
+<=== Epoch: 5 | Loss: 5.3789 | Val Acc: 0.9600 | Time: 21.82s ===>
+<=== Epoch: 6 | Loss: 0.2329 | Val Acc: 0.9500 | Time: 21.94s ===>
+<=== Epoch: 7 | Loss: 0.1985 | Val Acc: 0.9900 | Time: 21.96s ===>
+<=== Epoch: 8 | Loss: 0.2061 | Val Acc: 0.9800 | Time: 21.97s ===>
+<=== Epoch: 9 | Loss: 0.2173 | Val Acc: 0.9850 | Time: 21.89s ===>
+<=== Epoch: 10 | Loss: 0.1334 | Val Acc: 0.9750 | Time: 21.92s ===>
+<=== Epoch: 11 | Loss: 0.0504 | Val Acc: 0.9750 | Time: 23.05s ===>
+<=== Epoch: 12 | Loss: 0.2719 | Val Acc: 0.9750 | Time: 22.40s ===>
+<=== Epoch: 13 | Loss: 0.1484 | Val Acc: 0.9750 | Time: 22.22s ===>
+<=== Epoch: 14 | Loss: 0.0765 | Val Acc: 0.9650 | Time: 22.36s ===>
+<=== Epoch: 15 | Loss: 0.1689 | Val Acc: 0.9800 | Time: 22.14s ===>
+<=== Epoch: 16 | Loss: 0.2639 | Val Acc: 0.9800 | Time: 22.38s ===>
+<=== Epoch: 17 | Loss: 0.0907 | Val Acc: 0.9750 | Time: 22.17s ===>
+<=== Epoch: 18 | Loss: 0.0683 | Val Acc: 0.9650 | Time: 22.09s ===>
+<=== Epoch: 19 | Loss: 0.1238 | Val Acc: 0.9350 | Time: 22.15s ===>
+<=== Epoch: 20 | Loss: 0.3240 | Val Acc: 0.8800 | Time: 22.06s ===>
+<=== Epoch: 21 | Loss: 0.1997 | Val Acc: 0.9850 | Time: 22.14s ===>
+<=== Epoch: 22 | Loss: 0.0043 | Val Acc: 0.9850 | Time: 22.05s ===>
+<=== Epoch: 23 | Loss: 0.0040 | Val Acc: 0.9800 | Time: 22.18s ===>
+<=== Epoch: 24 | Loss: 0.0037 | Val Acc: 0.9800 | Time: 23.22s ===>
+<=== Epoch: 25 | Loss: 0.0035 | Val Acc: 0.9850 | Time: 22.32s ===>
+<=== Epoch: 26 | Loss: 0.0033 | Val Acc: 0.9900 | Time: 22.72s ===>
+<=== Epoch: 27 | Loss: 0.6516 | Val Acc: 0.9850 | Time: 22.38s ===>
+<=== Epoch: 28 | Loss: 0.3241 | Val Acc: 0.9850 | Time: 22.53s ===>
+<=== Epoch: 29 | Loss: 0.2535 | Val Acc: 0.9800 | Time: 22.13s ===>
+Task 0 Completed. Best Val Accuracy (Cumulative): 0.9900
+
+==================== Task 1 ====================
+Training on Categories: ['airplane', 'bookshelf']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 1 Training ===================>
+<=== Epoch: 0 | Loss: 19.9745 | Val Acc: 0.5000 | Time: 24.69s ===>
+<=== Epoch: 1 | Loss: 0.0248 | Val Acc: 0.5000 | Time: 16.62s ===>
+<=== Epoch: 2 | Loss: 0.1199 | Val Acc: 0.5000 | Time: 16.68s ===>
+<=== Epoch: 3 | Loss: 0.0988 | Val Acc: 0.4975 | Time: 16.72s ===>
+<=== Epoch: 4 | Loss: 0.3955 | Val Acc: 0.4750 | Time: 16.67s ===>
+<=== Epoch: 5 | Loss: 1.2045 | Val Acc: 0.5000 | Time: 16.73s ===>
+<=== Epoch: 6 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 16.69s ===>
+<=== Epoch: 7 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 23.43s ===>
+<=== Epoch: 8 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 32.92s ===>
+<=== Epoch: 9 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 37.95s ===>
+<=== Epoch: 10 | Loss: 0.0261 | Val Acc: 0.4950 | Time: 29.51s ===>
+<=== Epoch: 11 | Loss: 0.4454 | Val Acc: 0.5000 | Time: 23.41s ===>
+<=== Epoch: 12 | Loss: 0.1101 | Val Acc: 0.5000 | Time: 33.02s ===>
+<=== Epoch: 13 | Loss: 0.0226 | Val Acc: 0.5000 | Time: 34.92s ===>
+<=== Epoch: 14 | Loss: 0.0399 | Val Acc: 0.5000 | Time: 24.46s ===>
+<=== Epoch: 15 | Loss: 0.0272 | Val Acc: 0.5000 | Time: 16.78s ===>
+<=== Epoch: 16 | Loss: 0.0729 | Val Acc: 0.5000 | Time: 16.86s ===>
+<=== Epoch: 17 | Loss: 0.0538 | Val Acc: 0.5000 | Time: 16.80s ===>
+<=== Epoch: 18 | Loss: 0.3741 | Val Acc: 0.5000 | Time: 17.11s ===>
+<=== Epoch: 19 | Loss: 0.0789 | Val Acc: 0.5000 | Time: 18.36s ===>
+<=== Epoch: 20 | Loss: 0.0034 | Val Acc: 0.5000 | Time: 16.90s ===>
+<=== Epoch: 21 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 17.07s ===>
+<=== Epoch: 22 | Loss: 0.0470 | Val Acc: 0.5000 | Time: 17.52s ===>
+<=== Epoch: 23 | Loss: 0.0278 | Val Acc: 0.5000 | Time: 17.66s ===>
+<=== Epoch: 24 | Loss: 0.0417 | Val Acc: 0.5000 | Time: 17.07s ===>
+<=== Epoch: 25 | Loss: 0.0304 | Val Acc: 0.5000 | Time: 17.11s ===>
+<=== Epoch: 26 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 17.12s ===>
+<=== Epoch: 27 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 17.01s ===>
+<=== Epoch: 28 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 16.86s ===>
+<=== Epoch: 29 | Loss: 0.0013 | Val Acc: 0.5000 | Time: 17.05s ===>
+Task 1 Completed. Best Val Accuracy (Cumulative): 0.5000
+
+==================== Task 2 ====================
+Training on Categories: ['bed', 'vase']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 2 Training ===================>
+<=== Epoch: 0 | Loss: 27.5191 | Val Acc: 0.3200 | Time: 20.83s ===>

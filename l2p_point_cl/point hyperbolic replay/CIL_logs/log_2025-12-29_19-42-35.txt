@@ -1,0 +1,9 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+Warning: Dataset root ./Point-Transformers/modelnet40_normal_resampled not found!
+Error in Task 0: [Errno 2] No such file or directory: './Point-Transformers/modelnet40_normal_resampled\\modelnet40_shape_names.txt'

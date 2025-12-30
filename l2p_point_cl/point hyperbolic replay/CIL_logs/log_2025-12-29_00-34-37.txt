@@ -1,0 +1,33 @@
+Using L2P_PointMLP with Pre-trained Weights...
+Loading PointMLP weights from e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth
+Weight Load Message: <All keys matched successfully>
+
+==================== Task 0 ====================
+Training on Categories: ['chair', 'sofa']
+Validating on Categories: ['chair', 'sofa']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 0 Training ===================>
+<=== Epoch: 0 | Loss: 12.4481 | Val Acc (Linear): 0.7450 | Time: 77.87s ===>
+Task 0 Training Completed.
+Computing Prototypes (Hyperbolic NCM) for current task...
+Prototypes updated. Total classes stored: 2
+Validating with Hyperbolic NCM...
+Hyperbolic NCM Accuracy: 0.9200
+Task 0 Final CIL Accuracy (NCM): 0.9200
+Task 0 Linear Head Accuracy (For Reference): 0.7450
+
+==================== Task 1 ====================
+Training on Categories: ['airplane', 'bookshelf']
+Validating on Categories: ['chair', 'sofa', 'airplane', 'bookshelf']
+The size of train data is 9843
+The size of test data is 2468
+<================== L2P Task 1 Training ===================>
+<=== Epoch: 0 | Loss: 32.6048 | Val Acc (Linear): 0.3950 | Time: 58.19s ===>
+Task 1 Training Completed.
+Computing Prototypes (Hyperbolic NCM) for current task...
+Prototypes updated. Total classes stored: 4
+Validating with Hyperbolic NCM...
+Hyperbolic NCM Accuracy: 0.5300
+Task 1 Final CIL Accuracy (NCM): 0.5300
+Task 1 Linear Head Accuracy (For Reference): 0.3950
