@@ -22,6 +22,7 @@ def init_args():
     parser.add_argument('--val_batch_size', type=int, default=32)
     parser.add_argument('--num_classes', type=int, default=40)
     parser.add_argument('--prompts_per_task', type=int, default=3) # Suggestion from user strategy
+    parser.add_argument('--top_k', type=int, default=3, help='Number of prompts selected per sample (<= prompts_per_task)')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()
@@ -179,4 +180,3 @@ if __name__ == '__main__':
             import traceback
             traceback.print_exc()
             break
-
