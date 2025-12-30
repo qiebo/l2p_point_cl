@@ -118,6 +118,31 @@
     -   *问题*: Router 漂移。如果允许更新 Key，新任务的训练可能会改变 Query-Key 的匹配关系，导致旧类样本在未来检索错误的 Prompt。
     -   *解决*: 修改 Gradient Hook，将所有 Key 的梯度强制置零。结合 Centroid Initialization，Keys 在初始化后即固定，仅训练 Prompt Values。这提供了最强的稳定性保障。
 
+### 3.6 实验对照与可控检索策略 (Contrastive Routing Controls)
+*为比较双曲检索与欧氏检索的效果，并提升路由可控性，加入以下实验开关与策略。*
+
+-   **Update: Prompt Key 冻结策略细化**
+    -   *背景*: 完全冻结 Key 可能过度保守，影响新任务适配。
+    -   *实现*: 仅冻结历史任务与未来任务的 Key，允许当前任务的 Key 微调（梯度保留）。
+    -   *位置*: `methods/L2P_Trainer.py` 中的 `freeze_grad_hook_keys`。
+
+-   **Update: Prompt 选择度量开关 (Hyperbolic vs Cosine)**
+    -   *目的*: 支持双曲距离检索与欧氏余弦检索的对照实验。
+    -   *实现*: `HyperbolicPromptPool` 新增 `selection_metric` 与 `compute_similarity`，可选 `hyperbolic` / `cosine`。
+    -   *位置*: `models/prompt_pool.py`。
+
+-   **Update: 超曲映射尺度可调**
+    -   *目的*: 避免 Poincaré 球边界饱和，支持调参。
+    -   *实现*: Prompt Pool 新增 `map_scale` 参数，控制 `expmap0` 输入尺度；并通过 CLI 参数暴露。
+    -   *位置*: `models/prompt_pool.py`、`PointNet_CL_CIL.py`。
+
+-   **Update: CLI 实验开关**
+    -   *新增参数*:
+        -   `--selection_metric {hyperbolic, cosine}`
+        -   `--map_scale <float>`
+        -   `--top_k <int>`（用于控制每样本 Prompt 数量）
+    -   *位置*: `PointNet_CL_CIL.py` / `methods/L2P_Trainer.py`。
+
 ---
 
 ## 4. 后续规划 (Future Work)
