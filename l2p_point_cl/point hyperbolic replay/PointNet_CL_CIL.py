@@ -26,6 +26,7 @@ def init_args():
     parser.add_argument('--selection_metric', type=str, default='hyperbolic', choices=['hyperbolic', 'cosine'],
                         help='Prompt selection distance metric')
     parser.add_argument('--map_scale', type=float, default=0.1, help='Scale for expmap0 mapping into Poincare ball')
+    parser.add_argument('--prompt_key_lr', type=float, default=0.001, help='Learning rate for prompt keys')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()

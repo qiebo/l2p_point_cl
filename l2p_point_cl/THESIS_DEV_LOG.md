@@ -143,6 +143,16 @@
         -   `--top_k <int>`（用于控制每样本 Prompt 数量）
     -   *位置*: `PointNet_CL_CIL.py` / `methods/L2P_Trainer.py`。
 
+-   **Update: Top-2 Task Gating 作为最终预测**
+    -   *背景*: Task 预测准确率下降会导致 Top-1 gating 误差放大。
+    -   *实现*: 在 NCM 推理中，使用 Top-2 候选任务中 NCM 相似度更高的特征作为最终预测。
+    -   *位置*: `methods/L2P_Trainer.py` 中 `validation_ncm`。
+
+-   **Update: Prompt Key 独立学习率**
+    -   *背景*: Prompt Key 作为路由锚点需要更稳定更新。
+    -   *实现*: 优化器使用 param group，将 `prompt_key` 学习率降低（默认 0.001）。
+    -   *位置*: `methods/L2P_Trainer.py` / `PointNet_CL_CIL.py`。
+
 ---
 
 ## 4. 后续规划 (Future Work)
