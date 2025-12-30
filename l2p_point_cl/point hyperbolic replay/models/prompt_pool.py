@@ -3,9 +3,9 @@ import torch.nn as nn
 from methods.poincareball import PoincareBall
 
 class HyperbolicPromptPool(nn.Module):
-    def __init__(self, length=5, embed_dim=768, embedding_key='mean', prompt_init='uniform', prompt_pool=False, 
-                 prompt_key=False, pool_size=None, top_k=None, batchwise_prompt=False, prompt_key_init='uniform', 
-                 c=1.0, num_tasks=20, prompts_per_task=3):
+    def __init__(self, length=5, embed_dim=768, embedding_key='mean', prompt_init='uniform', prompt_pool=False,
+                 prompt_key=False, pool_size=None, top_k=None, batchwise_prompt=False, prompt_key_init='uniform',
+                 c=1.0, num_tasks=20, prompts_per_task=3, map_scale=0.1):
         super().__init__()
 
         self.length = length
@@ -19,6 +19,7 @@ class HyperbolicPromptPool(nn.Module):
         self.ball = PoincareBall(dim=embed_dim, c=c) # Hyperbolic Space
         self.num_tasks = num_tasks
         self.prompts_per_task = prompts_per_task
+        self.map_scale = map_scale
 
         if self.prompt_pool:
             if pool_size is None:
@@ -53,6 +54,15 @@ class HyperbolicPromptPool(nn.Module):
         square_sum = torch.sum(x ** 2, dim=dim, keepdim=True)
         x_inv_norm = torch.rsqrt(torch.maximum(square_sum, torch.tensor(epsilon, device=x.device)))
         return x * x_inv_norm
+
+    def map_to_ball(self, x, dim=1, scale=None):
+        """Map Euclidean vectors to the Poincare ball via expmap0 after normalization."""
+        if scale is None:
+            scale = self.map_scale
+        x_norm = self.l2_normalize(x, dim=dim)
+        x_scaled = x_norm * scale
+        x_ball = self.ball.expmap0(x_scaled)
+        return self.ball.proju0(x_ball)
     
     def forward(self, x_embed, prompt_mask=None, cls_features=None, task_id=None):
         out = dict()
@@ -71,13 +81,11 @@ class HyperbolicPromptPool(nn.Module):
             else:
                 raise NotImplementedError("Not supported way of calculating embedding keys!")
 
-            # L2P original: L2 Normalize. 
-            # Hyperbolic: We assume keys are in Poincare Ball. 
-            # If they are not strictly constrained, we might need to project them. 
-            # Ideally, during training, parameters are updated via RiemannianAdam or projected.
-            # For strict implementation, we project to ball here to be safe.
-            prompt_key_norm = self.ball.proju0(self.prompt_key) # Ensure keys are in ball
-            x_embed_norm = self.ball.proju0(x_embed_mean)       # Ensure query is in ball
+            # L2P original: L2 Normalize.
+            # Hyperbolic: Map Euclidean vectors to the Poincare Ball via expmap0 for stability.
+            # This reduces boundary saturation from direct projection.
+            prompt_key_norm = self.map_to_ball(self.prompt_key, dim=1)
+            x_embed_norm = self.map_to_ball(x_embed_mean, dim=1)
 
             # --- HYPERBOLIC REPLACEMENT START ---
             # Calculate Poincare Distance between Query (x_embed_norm) and Keys (prompt_key_norm)
