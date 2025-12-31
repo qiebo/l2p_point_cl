@@ -153,6 +153,37 @@
     -   *实现*: 优化器使用 param group，将 `prompt_key` 学习率降低（默认 0.001）。
     -   *位置*: `methods/L2P_Trainer.py` / `PointNet_CL_CIL.py`。
 
+### 3.7 LAE + Adapter + NCM 基线 (No Replay, Frozen Backbone)
+*在 L2P 方案效果不达预期时，引入 LAE + Adapter 的对照基线，以最小改动验证 20 task 曲线。*
+
+-   **新增: Feature Adapter 模块**
+    -   *结构*: `Adapter(x) = x + W2(ReLU(W1(LN(x))))`，bottleneck 可配置。
+    -   *位置*: `models/adapter.py`。
+
+-   **新增: LAE PointMLP 模型封装**
+    -   *结构*: Frozen PointMLP Backbone + Adapter + Linear Head（仅训练 Adapter/Head）。
+    -   *位置*: `models/lae_pointmlp.py`。
+
+-   **新增: LAE 训练器 (Online/Offline + EMA)**
+    -   *机制*: 仅训练 online adapter；任务结束后用 EMA 更新 offline adapter。
+    -   *位置*: `methods/lae_trainer.py`。
+
+-   **新增: Ensemble NCM 推理**
+    -   *策略*: `logits = α * logits_off + (1-α) * logits_on`，默认 α=0.7。
+    -   *位置*: `methods/lae_trainer.py`。
+
+-   **Update: 三条曲线输出 (Online / Offline / Ensemble)**
+    -   *目的*: 快速判断 online 是否学不动、offline 是否过钝。
+    -   *实现*: 验证时分别计算 online-only、offline-only、ensemble 的 NCM Accuracy 并打印。
+    -   *位置*: `methods/lae_trainer.py`。
+
+-   **新增: CLI 开关**
+    -   `--method lae_adapter_ncm`
+    -   `--adapter_dim`
+    -   `--ema_decay`
+    -   `--ensemble_alpha`
+    -   *位置*: `PointNet_CL_CIL.py`。
+
 ---
 
 ## 4. 后续规划 (Future Work)
