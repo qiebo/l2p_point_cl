@@ -12,6 +12,7 @@ import numpy as np
 import datetime
 from dataloaders.modelnet import ModelNetDataLoader
 from methods.L2P_Trainer import L2P_Trainer
+from methods.lae_trainer import LAE_Trainer
 
 def init_args():
     parser = argparse.ArgumentParser()
@@ -22,6 +23,19 @@ def init_args():
     parser.add_argument('--val_batch_size', type=int, default=32)
     parser.add_argument('--num_classes', type=int, default=40)
     parser.add_argument('--prompts_per_task', type=int, default=3) # Suggestion from user strategy
+    parser.add_argument('--top_k', type=int, default=3, help='Number of prompts selected per sample (<= prompts_per_task)')
+    parser.add_argument('--selection_metric', type=str, default='hyperbolic', choices=['hyperbolic', 'cosine'],
+                        help='Prompt selection distance metric')
+    parser.add_argument('--map_scale', type=float, default=0.1, help='Scale for expmap0 mapping into Poincare ball')
+    parser.add_argument('--prompt_key_lr', type=float, default=0.001, help='Learning rate for prompt keys')
+    parser.add_argument('--method', type=str, default='l2p', choices=['l2p', 'lae_adapter_ncm', 'coda_prompt'],
+                        help='Training method')
+    parser.add_argument('--adapter_dim', type=int, default=128, help='Adapter bottleneck dimension')
+    parser.add_argument('--ema_decay', type=float, default=0.99, help='EMA decay for offline adapter')
+    parser.add_argument('--ensemble_alpha', type=float, default=0.7, help='Offline weight in NCM ensemble')
+    parser.add_argument('--online_lr', type=float, default=0.01, help='Learning rate for online adapter/head')
+    parser.add_argument('--distill_lambda', type=float, default=0.1, help='Weight for online-offline distillation')
+    parser.add_argument('--orth_lambda', type=float, default=0.1, help='Weight for CODA prompt orthogonality loss')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()
@@ -102,6 +116,25 @@ if __name__ == '__main__':
     log_dir = './CIL_logs'
     if not os.path.exists(log_dir): os.makedirs(log_dir)
     sys.stdout = Logger(f'{log_dir}/log_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt')
+
+    print("Experiment Configuration:")
+    print(f"  method: {args.method}")
+    print(f"  num_task: {args.num_task}")
+    print(f"  num_classes: {args.num_classes}")
+    print(f"  train_batch_size: {args.train_batch_size}")
+    print(f"  val_batch_size: {args.val_batch_size}")
+    print(f"  num_workers: {args.num_workers}")
+    print(f"  online_lr: {args.online_lr}")
+    print(f"  distill_lambda: {args.distill_lambda}")
+    print(f"  adapter_dim: {args.adapter_dim}")
+    print(f"  ema_decay: {args.ema_decay}")
+    print(f"  ensemble_alpha: {args.ensemble_alpha}")
+    print(f"  prompts_per_task: {args.prompts_per_task}")
+    print(f"  top_k: {args.top_k}")
+    print(f"  selection_metric: {args.selection_metric}")
+    print(f"  map_scale: {args.map_scale}")
+    print(f"  prompt_key_lr: {args.prompt_key_lr}")
+    print(f"  orth_lambda: {args.orth_lambda}")
     
     # Class Order (Fixed for reproducibility)
     CATEGORY_ORDER = ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet',
@@ -125,7 +158,10 @@ if __name__ == '__main__':
     
     # Init Agent (Trainer)
     # We init with MAX CLASSES (40) to avoid resizing classifier
-    agent = L2P_Trainer(args, outdim=args.num_classes)
+    if args.method == 'lae_adapter_ncm':
+        agent = LAE_Trainer(args, outdim=args.num_classes)
+    else:
+        agent = L2P_Trainer(args, outdim=args.num_classes)
     
     for n_task in range(args.num_task):
         print(f"\n{'='*20} Task {n_task} {'='*20}")
@@ -155,22 +191,48 @@ if __name__ == '__main__':
             train_loader = get_modelnet_loader(args.dataroot, train_cats, split='train', batch_size=args.train_batch_size, label_remap=label_remap, num_workers=args.num_workers)
             val_loader = get_modelnet_loader(args.dataroot, val_cats, split='test', batch_size=args.val_batch_size, label_remap=label_remap, num_workers=args.num_workers)
             
-            # Data-Driven Prompt Initialization
-            # Calculates task centroid and initializes current task's prompts
-            # This helps avoid "Winner-Takes-All" failure by placing new prompts close to new data
-            agent.init_prompts_with_centroids(train_loader, task_id=n_task)
+            if args.method != 'lae_adapter_ncm':
+                # Data-Driven Prompt Initialization
+                # Calculates task centroid and initializes current task's prompts
+                # This helps avoid "Winner-Takes-All" failure by placing new prompts close to new data
+                agent.init_prompts_with_centroids(train_loader, task_id=n_task)
             
             # Train
             acc_linear = agent.train(train_loader, val_loader, task_num=n_task)
             print(f"Task {n_task} Training Completed.")
             
-            # Compute Prototypes for NCM (Critical for CIL)
-            # Pass task_id for correct Prompt Masking during prototype generation
-            agent.compute_prototypes(train_loader, task_id=n_task)
-            
-            # Validate using NCM
-            # Pass task_id for correct Prompt Masking during inference
-            acc_ncm = agent.validation_ncm(val_loader, task_id=n_task)
+            if args.method == 'lae_adapter_ncm':
+                prev_online = dict(agent.class_means_online)
+                prev_offline = dict(agent.class_means_offline)
+
+                agent.class_means_online = agent.compute_prototypes(
+                    agent.online_model,
+                    train_loader,
+                    existing=agent.class_means_online
+                )
+                agent.update_offline_adapter(args.ema_decay)
+                agent.class_means_offline = agent.compute_prototypes(
+                    agent.offline_model,
+                    train_loader,
+                    existing=agent.class_means_offline
+                )
+
+                drift_online, count_online = agent.compute_prototype_drift(prev_online, agent.class_means_online)
+                drift_offline, count_offline = agent.compute_prototype_drift(prev_offline, agent.class_means_offline)
+                if drift_online is not None:
+                    print(f"Prototype Drift [Online]: mean cosine={drift_online:.4f} over {count_online} classes")
+                if drift_offline is not None:
+                    print(f"Prototype Drift [Offline]: mean cosine={drift_offline:.4f} over {count_offline} classes")
+
+                acc_ncm = agent.validation_ncm(val_loader, alpha=args.ensemble_alpha)
+            else:
+                # Compute Prototypes for NCM (Critical for CIL)
+                # Pass task_id for correct Prompt Masking during prototype generation
+                agent.compute_prototypes(train_loader, task_id=n_task)
+                
+                # Validate using NCM
+                # Pass task_id for correct Prompt Masking during inference
+                acc_ncm = agent.validation_ncm(val_loader, task_id=n_task)
             print(f"Task {n_task} Final CIL Accuracy (NCM): {acc_ncm:.4f}")
             print(f"Task {n_task} Linear Head Accuracy (For Reference): {acc_linear:.4f}")
             
@@ -179,4 +241,3 @@ if __name__ == '__main__':
             import traceback
             traceback.print_exc()
             break
-
