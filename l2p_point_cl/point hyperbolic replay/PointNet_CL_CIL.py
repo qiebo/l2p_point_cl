@@ -34,6 +34,7 @@ def init_args():
     parser.add_argument('--ema_decay', type=float, default=0.99, help='EMA decay for offline adapter')
     parser.add_argument('--ensemble_alpha', type=float, default=0.7, help='Offline weight in NCM ensemble')
     parser.add_argument('--online_lr', type=float, default=0.01, help='Learning rate for online adapter/head')
+    parser.add_argument('--distill_lambda', type=float, default=0.1, help='Weight for online-offline distillation')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()
@@ -114,6 +115,24 @@ if __name__ == '__main__':
     log_dir = './CIL_logs'
     if not os.path.exists(log_dir): os.makedirs(log_dir)
     sys.stdout = Logger(f'{log_dir}/log_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.txt')
+
+    print("Experiment Configuration:")
+    print(f"  method: {args.method}")
+    print(f"  num_task: {args.num_task}")
+    print(f"  num_classes: {args.num_classes}")
+    print(f"  train_batch_size: {args.train_batch_size}")
+    print(f"  val_batch_size: {args.val_batch_size}")
+    print(f"  num_workers: {args.num_workers}")
+    print(f"  online_lr: {args.online_lr}")
+    print(f"  distill_lambda: {args.distill_lambda}")
+    print(f"  adapter_dim: {args.adapter_dim}")
+    print(f"  ema_decay: {args.ema_decay}")
+    print(f"  ensemble_alpha: {args.ensemble_alpha}")
+    print(f"  prompts_per_task: {args.prompts_per_task}")
+    print(f"  top_k: {args.top_k}")
+    print(f"  selection_metric: {args.selection_metric}")
+    print(f"  map_scale: {args.map_scale}")
+    print(f"  prompt_key_lr: {args.prompt_key_lr}")
     
     # Class Order (Fixed for reproducibility)
     CATEGORY_ORDER = ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet',

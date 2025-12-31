@@ -195,6 +195,16 @@
     -   *实现*: 计算新旧原型的余弦相似度平均值并打印。
     -   *位置*: `methods/lae_trainer.py` / `PointNet_CL_CIL.py`。
 
+-   **新增: Online↔Offline 蒸馏损失**
+    -   *目的*: 稳定 online adapter，减少对旧类特征的破坏。
+    -   *实现*: 训练时对 online/offline 特征添加 MSE 约束，权重为 `distill_lambda`。
+    -   *位置*: `methods/lae_trainer.py` / `PointNet_CL_CIL.py`。
+
+-   **Update: 日志记录初始配置**
+    -   *目的*: 日志中包含实验初始条件，便于复盘。
+    -   *实现*: 在日志开头打印 method、lr、batch size、task/epoch 等关键参数。
+    -   *位置*: `PointNet_CL_CIL.py`。
+
 ---
 
 ## 4. 后续规划 (Future Work)

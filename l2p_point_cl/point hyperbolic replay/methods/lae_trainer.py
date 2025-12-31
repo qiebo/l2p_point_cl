@@ -27,6 +27,7 @@ class LAE_Trainer:
             param.requires_grad = False
 
         self.criterion = nn.CrossEntropyLoss()
+        self.distill_criterion = nn.MSELoss()
         self.class_means_online = {}
         self.class_means_offline = {}
 
@@ -65,17 +66,29 @@ class LAE_Trainer:
                 optimizer.zero_grad()
                 output = self.online_model(x)
                 logits = output['logits']
+                feat_online = output['embedding']
+
+                with torch.no_grad():
+                    feat_offline = self.offline_model(x)['embedding']
+                    feat_offline = F.normalize(feat_offline, p=2, dim=1)
+                feat_online = F.normalize(feat_online, p=2, dim=1)
 
                 if seen_classes_limit < logits.shape[1]:
                     logits[:, seen_classes_limit:] = -float('inf')
 
-                loss = self.criterion(logits, y)
+                ce_loss = self.criterion(logits, y)
+                distill_loss = self.distill_criterion(feat_online, feat_offline)
+                loss = ce_loss + self.args.distill_lambda * distill_loss
                 loss.backward()
                 optimizer.step()
 
                 tot_loss += loss.item() * x.size(0)
                 tot_size += x.size(0)
-                pbar.set_postfix({'Loss': loss.item()})
+                pbar.set_postfix({
+                    'Loss': loss.item(),
+                    'CE': ce_loss.item(),
+                    'Distill': distill_loss.item()
+                })
 
             time_cost = time.time() - start_time
             avg_loss = tot_loss / tot_size
