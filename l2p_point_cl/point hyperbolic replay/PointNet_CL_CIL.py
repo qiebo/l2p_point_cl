@@ -28,13 +28,14 @@ def init_args():
                         help='Prompt selection distance metric')
     parser.add_argument('--map_scale', type=float, default=0.1, help='Scale for expmap0 mapping into Poincare ball')
     parser.add_argument('--prompt_key_lr', type=float, default=0.001, help='Learning rate for prompt keys')
-    parser.add_argument('--method', type=str, default='l2p', choices=['l2p', 'lae_adapter_ncm'],
+    parser.add_argument('--method', type=str, default='l2p', choices=['l2p', 'lae_adapter_ncm', 'coda_prompt'],
                         help='Training method')
     parser.add_argument('--adapter_dim', type=int, default=128, help='Adapter bottleneck dimension')
     parser.add_argument('--ema_decay', type=float, default=0.99, help='EMA decay for offline adapter')
     parser.add_argument('--ensemble_alpha', type=float, default=0.7, help='Offline weight in NCM ensemble')
     parser.add_argument('--online_lr', type=float, default=0.01, help='Learning rate for online adapter/head')
     parser.add_argument('--distill_lambda', type=float, default=0.1, help='Weight for online-offline distillation')
+    parser.add_argument('--orth_lambda', type=float, default=0.1, help='Weight for CODA prompt orthogonality loss')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()
@@ -133,6 +134,7 @@ if __name__ == '__main__':
     print(f"  selection_metric: {args.selection_metric}")
     print(f"  map_scale: {args.map_scale}")
     print(f"  prompt_key_lr: {args.prompt_key_lr}")
+    print(f"  orth_lambda: {args.orth_lambda}")
     
     # Class Order (Fixed for reproducibility)
     CATEGORY_ORDER = ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet',

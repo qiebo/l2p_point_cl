@@ -164,6 +164,19 @@ class HyperbolicPromptPool(nn.Module):
             reduce_dist = torch.sum(selected_distances) / x_embed.shape[0] # Scalar
             out['reduce_sim'] = reduce_dist # Note: The trainer should know this is distance and MINIMIZE it.
 
+            if task_id is not None:
+                start_idx = task_id * self.prompts_per_task
+                end_idx = (task_id + 1) * self.prompts_per_task
+                prompt_slice = self.prompt[start_idx:end_idx]  # T, L, C
+                if prompt_slice.numel() > 0:
+                    prompt_flat = prompt_slice.reshape(prompt_slice.shape[0], -1)
+                    prompt_flat = self.l2_normalize(prompt_flat, dim=1)
+                    gram = torch.matmul(prompt_flat, prompt_flat.T)
+                    identity = torch.eye(gram.size(0), device=gram.device)
+                    out['orth_loss'] = torch.norm(gram - identity, p='fro')
+                else:
+                    out['orth_loss'] = torch.tensor(0.0, device=x_embed.device)
+
         else:
             # No pool, just static or learnable prompt without selection
             if self.prompt_init == 'zero':

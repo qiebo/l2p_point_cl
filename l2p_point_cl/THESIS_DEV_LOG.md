@@ -205,6 +205,19 @@
     -   *实现*: 在日志开头打印 method、lr、batch size、task/epoch 等关键参数。
     -   *位置*: `PointNet_CL_CIL.py`。
 
+### 3.8 CODA-Prompt 基线 (PointMLP + NCM)
+*保留冻结的 PointMLP backbone 与 NCM 评估，引入 CODA-Prompt 的正交约束。*
+
+-   **新增: 正交约束损失**
+    -   *目的*: 降低不同 prompt 之间干扰，提高任务解耦稳定性。
+    -   *实现*: 对当前任务的 prompt 做正交正则化（Gram 矩阵接近单位阵）。
+    -   *位置*: `models/prompt_pool.py` / `methods/L2P_Trainer.py`。
+
+-   **新增: CODA Prompt 运行开关**
+    -   `--method coda_prompt`
+    -   `--orth_lambda`
+    -   *位置*: `PointNet_CL_CIL.py`。
+
 ---
 
 ## 4. 后续规划 (Future Work)

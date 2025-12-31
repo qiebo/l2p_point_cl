@@ -30,6 +30,8 @@ class L2P_Trainer:
 
         self.model.prompt_pool.selection_metric = args.selection_metric
         self.model.prompt_pool.map_scale = args.map_scale
+        if args.method == 'coda_prompt':
+            self.model.prompt_pool.selection_metric = 'cosine'
         
         self.criterion = nn.CrossEntropyLoss()
         
@@ -195,10 +197,13 @@ class L2P_Trainer:
                 # Loss Calculation
                 ce_loss = self.criterion(logits, y)
                 pull_constraint = output['reduce_sim'] # Hyperbolic Distance
+                orth_loss = output.get('orth_loss', torch.tensor(0.0, device=self.device))
                 
                 # Total Loss = CE + lambda * Pull
                 # Lambda typically 0.1
                 loss = ce_loss + 0.1 * pull_constraint
+                if self.args.method == 'coda_prompt':
+                    loss = loss + self.args.orth_lambda * orth_loss
                 
                 loss.backward()
                 optimizer.step()
@@ -206,7 +211,12 @@ class L2P_Trainer:
                 tot_loss += loss.item() * x.size(0)
                 tot_size += x.size(0)
                 
-                pbar.set_postfix({'Loss': loss.item(), 'CE': ce_loss.item(), 'Pull': pull_constraint.item()})
+                pbar.set_postfix({
+                    'Loss': loss.item(),
+                    'CE': ce_loss.item(),
+                    'Pull': pull_constraint.item(),
+                    'Orth': orth_loss.item()
+                })
                 
             time_cost = time.time() - start_time
             avg_loss = tot_loss / tot_size
