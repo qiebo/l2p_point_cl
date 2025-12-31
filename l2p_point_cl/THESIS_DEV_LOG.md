@@ -177,6 +177,11 @@
     -   *实现*: 验证时分别计算 online-only、offline-only、ensemble 的 NCM Accuracy 并打印。
     -   *位置*: `methods/lae_trainer.py`。
 
+-   **Update: 原型累计更新 (Prototype Accumulation)**
+    -   *背景*: NCM 评估需保留所有已见类别的原型，否则后续任务会出现断崖式下降。
+    -   *实现*: `compute_prototypes` 支持传入 `existing` 字典，仅更新当前任务类并保留旧类原型。
+    -   *位置*: `methods/lae_trainer.py` / `PointNet_CL_CIL.py`。
+
 -   **新增: CLI 开关**
     -   `--method lae_adapter_ncm`
     -   `--adapter_dim`

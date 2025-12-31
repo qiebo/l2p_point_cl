@@ -95,7 +95,7 @@ class LAE_Trainer:
         for p_off, p_on in zip(offline_adapter.parameters(), online_adapter.parameters()):
             p_off.data = momentum * p_off.data + (1.0 - momentum) * p_on.data
 
-    def compute_prototypes(self, model, train_loader):
+    def compute_prototypes(self, model, train_loader, existing=None):
         model.eval()
         sums = {}
         counts = {}
@@ -121,6 +121,9 @@ class LAE_Trainer:
             mean_vec = sums[cls] / counts[cls]
             mean_vec = F.normalize(mean_vec, p=2, dim=0)
             prototypes[cls] = mean_vec.detach()
+        if existing is not None:
+            existing.update(prototypes)
+            return existing
         return prototypes
 
     def validation(self, val_loader, task_id=None):

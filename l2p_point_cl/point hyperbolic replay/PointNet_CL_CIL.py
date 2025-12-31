@@ -180,9 +180,17 @@ if __name__ == '__main__':
             print(f"Task {n_task} Training Completed.")
             
             if args.method == 'lae_adapter_ncm':
-                agent.class_means_online = agent.compute_prototypes(agent.online_model, train_loader)
+                agent.class_means_online = agent.compute_prototypes(
+                    agent.online_model,
+                    train_loader,
+                    existing=agent.class_means_online
+                )
                 agent.update_offline_adapter(args.ema_decay)
-                agent.class_means_offline = agent.compute_prototypes(agent.offline_model, train_loader)
+                agent.class_means_offline = agent.compute_prototypes(
+                    agent.offline_model,
+                    train_loader,
+                    existing=agent.class_means_offline
+                )
                 acc_ncm = agent.validation_ncm(val_loader, alpha=args.ensemble_alpha)
             else:
                 # Compute Prototypes for NCM (Critical for CIL)
