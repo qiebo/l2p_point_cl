@@ -33,6 +33,7 @@ def init_args():
     parser.add_argument('--adapter_dim', type=int, default=128, help='Adapter bottleneck dimension')
     parser.add_argument('--ema_decay', type=float, default=0.99, help='EMA decay for offline adapter')
     parser.add_argument('--ensemble_alpha', type=float, default=0.7, help='Offline weight in NCM ensemble')
+    parser.add_argument('--online_lr', type=float, default=0.01, help='Learning rate for online adapter/head')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()
@@ -180,6 +181,9 @@ if __name__ == '__main__':
             print(f"Task {n_task} Training Completed.")
             
             if args.method == 'lae_adapter_ncm':
+                prev_online = dict(agent.class_means_online)
+                prev_offline = dict(agent.class_means_offline)
+
                 agent.class_means_online = agent.compute_prototypes(
                     agent.online_model,
                     train_loader,
@@ -191,6 +195,14 @@ if __name__ == '__main__':
                     train_loader,
                     existing=agent.class_means_offline
                 )
+
+                drift_online, count_online = agent.compute_prototype_drift(prev_online, agent.class_means_online)
+                drift_offline, count_offline = agent.compute_prototype_drift(prev_offline, agent.class_means_offline)
+                if drift_online is not None:
+                    print(f"Prototype Drift [Online]: mean cosine={drift_online:.4f} over {count_online} classes")
+                if drift_offline is not None:
+                    print(f"Prototype Drift [Offline]: mean cosine={drift_offline:.4f} over {count_offline} classes")
+
                 acc_ncm = agent.validation_ncm(val_loader, alpha=args.ensemble_alpha)
             else:
                 # Compute Prototypes for NCM (Critical for CIL)

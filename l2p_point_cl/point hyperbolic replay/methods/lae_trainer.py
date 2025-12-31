@@ -35,7 +35,7 @@ class LAE_Trainer:
         for name, param in self.online_model.named_parameters():
             if param.requires_grad:
                 params_to_optimize.append(param)
-        optimizer = torch.optim.Adam(params_to_optimize, lr=0.01)
+        optimizer = torch.optim.Adam(params_to_optimize, lr=self.args.online_lr)
         return optimizer
 
     def train(self, train_loader, val_loader, task_num=0):
@@ -125,6 +125,19 @@ class LAE_Trainer:
             existing.update(prototypes)
             return existing
         return prototypes
+
+    def compute_prototype_drift(self, before, after):
+        if not before or not after:
+            return None, 0
+        shared_classes = [cls for cls in before.keys() if cls in after]
+        if not shared_classes:
+            return None, 0
+        sims = []
+        for cls in shared_classes:
+            vec_before = F.normalize(before[cls], p=2, dim=0)
+            vec_after = F.normalize(after[cls], p=2, dim=0)
+            sims.append(torch.dot(vec_before, vec_after).item())
+        return float(sum(sims) / len(sims)), len(sims)
 
     def validation(self, val_loader, task_id=None):
         self.online_model.eval()

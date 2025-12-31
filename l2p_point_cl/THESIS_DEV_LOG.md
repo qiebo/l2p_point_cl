@@ -187,7 +187,13 @@
     -   `--adapter_dim`
     -   `--ema_decay`
     -   `--ensemble_alpha`
+    -   `--online_lr`
     -   *位置*: `PointNet_CL_CIL.py`。
+
+-   **新增: 旧类原型漂移诊断 (Prototype Drift)**
+    -   *目的*: 判断在线/离线原型是否在连续任务中漂移过大。
+    -   *实现*: 计算新旧原型的余弦相似度平均值并打印。
+    -   *位置*: `methods/lae_trainer.py` / `PointNet_CL_CIL.py`。
 
 ---
 
