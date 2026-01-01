@@ -232,7 +232,18 @@
 -   **新增: CLI 开关**
     -   `--method simple_baseline`
     -   `--baseline_lr`
+    -   `--pretrained_path`
     -   *位置*: `PointNet_CL_CIL.py`。
+
+-   **Update: 可切换 ModelNet40 预训练权重**
+    -   *目的*: 使用同域预训练提升特征可分性。
+    -   *实现*: 通过 `--pretrained_path` 指定权重文件路径。
+    -   *位置*: `PointNet_CL_CIL.py` / `methods/*_trainer.py`。
+
+-   **Update: CLI 参数表格化说明**
+    -   *目的*: 统一记录所有可选参数与默认值，便于团队协作。
+    -   *实现*: 新增 `README.md`，整理 method 与 CLI 参数表。
+    -   *位置*: `README.md`。
 
 ---
 

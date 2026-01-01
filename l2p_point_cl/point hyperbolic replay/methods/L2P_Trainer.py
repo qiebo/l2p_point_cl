@@ -25,7 +25,8 @@ class L2P_Trainer:
             prompt_length=5, 
             top_k=top_k,
             num_tasks=args.num_task,
-            prompts_per_task=args.prompts_per_task 
+            prompts_per_task=args.prompts_per_task,
+            pretrained_path=args.pretrained_path,
         ).to(self.device)
 
         self.model.prompt_pool.selection_metric = args.selection_metric

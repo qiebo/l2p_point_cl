@@ -18,6 +18,7 @@ class SimpleTrainer:
         self.model = models.simple_pointmlp.SimplePointMLP(
             num_classes=outdim,
             embed_dim=1024,
+            pretrained_path=args.pretrained_path,
         ).to(self.device)
 
         self.criterion = nn.CrossEntropyLoss()

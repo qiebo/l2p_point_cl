@@ -38,6 +38,9 @@ def init_args():
     parser.add_argument('--distill_lambda', type=float, default=0.1, help='Weight for online-offline distillation')
     parser.add_argument('--orth_lambda', type=float, default=0.1, help='Weight for CODA prompt orthogonality loss')
     parser.add_argument('--baseline_lr', type=float, default=0.001, help='Learning rate for simple baseline head')
+    parser.add_argument('--pretrained_path', type=str,
+                        default=r'e:\非全相关\毕业论文\point_l2p\classification_ScanObjectNN\pointMLP-demo1\best_checkpoint.pth',
+                        help='Path to PointMLP pretrained weights')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()
@@ -138,6 +141,7 @@ if __name__ == '__main__':
     print(f"  prompt_key_lr: {args.prompt_key_lr}")
     print(f"  orth_lambda: {args.orth_lambda}")
     print(f"  baseline_lr: {args.baseline_lr}")
+    print(f"  pretrained_path: {args.pretrained_path}")
     
     # Class Order (Fixed for reproducibility)
     CATEGORY_ORDER = ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet',

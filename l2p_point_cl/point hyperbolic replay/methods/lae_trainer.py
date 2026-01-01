@@ -20,6 +20,7 @@ class LAE_Trainer:
             num_classes=outdim,
             embed_dim=1024,
             adapter_dim=args.adapter_dim,
+            pretrained_path=args.pretrained_path,
         ).to(self.device)
         self.offline_model = copy.deepcopy(self.online_model).to(self.device)
         self.offline_model.eval()
