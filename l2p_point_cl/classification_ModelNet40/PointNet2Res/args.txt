@@ -1,0 +1,10 @@
+checkpoint:	 checkpoints/PointNet2Res-20211110213921-8746
+msg:	 None
+batch_size:	 32
+model:	 PointNet2Res
+epoch:	 300
+num_points:	 1024
+learning_rate:	 0.1
+weight_decay:	 0.0001
+seed:	 8746
+workers:	 4
