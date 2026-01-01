@@ -13,23 +13,25 @@ class L2P_Trainer:
         
         # Use PointMLP by default as per user request
         print("Using L2P_PointMLP with Pre-trained Weights...")
+        top_k = min(args.top_k, args.prompts_per_task)
+        if args.top_k > args.prompts_per_task:
+            print(f"Warning: top_k ({args.top_k}) > prompts_per_task ({args.prompts_per_task}). "
+                  f"Clamping top_k to {top_k}.")
+
         self.model = models.l2p_pointmlp.L2P_PointMLP(
             num_classes=outdim, 
             embed_dim=1024,
             prompt_pool_capacity=20, # Ignored now
             prompt_length=5, 
-            top_k=1, # Fixed: Must be <= prompts_per_task (3). User recommended k=1 for stability.
-            # If k > prompts_per_task, we select masked (inf) prompts -> Loss=inf.
-            # User said "stable priority k=1, not recommend k>=3".
-            # BUT user instruction 2.2 says "keep your existing injection... but ensure...".
-            # Plan said "Reduce default top_k to 1... or keep at prompts_per_task".
-            # prompts_per_task is 3. Let's set top_k = prompts_per_task (3).
-            # No, user 2.1 says "recommends k=1". But let's stick to prompts_per_task for now or 1?
-            # Let's use args.top_k if available or hardcode to 3 (prompts_per_task).
-            # Wait, prompts_per_task default is 3. Let's use that.
+            top_k=top_k,
             num_tasks=args.num_task,
             prompts_per_task=args.prompts_per_task 
         ).to(self.device)
+
+        self.model.prompt_pool.selection_metric = args.selection_metric
+        self.model.prompt_pool.map_scale = args.map_scale
+        if args.method == 'coda_prompt':
+            self.model.prompt_pool.selection_metric = 'cosine'
         
         self.criterion = nn.CrossEntropyLoss()
         
@@ -94,15 +96,28 @@ class L2P_Trainer:
     def configure_optimizers(self):
         # Only optimize Prompt Pool and Classifier
         # Backbone is already frozen in L2P_PointNet __init__
-        
-        params_to_optimize = []
+
+        prompt_key_param = None
+        if self.model.prompt_pool.prompt_key is not None:
+            prompt_key_param = self.model.prompt_pool.prompt_key
+
+        base_params = []
         for name, param in self.model.named_parameters():
-            if param.requires_grad:
-                # Note: We rely on gradient hooks for fine-grained prompt freezing
-                params_to_optimize.append(param)
-        
+            if not param.requires_grad:
+                continue
+            # Note: We rely on gradient hooks for fine-grained prompt freezing
+            if param is prompt_key_param:
+                continue
+            base_params.append(param)
+
+        param_groups = [
+            {'params': base_params, 'lr': 0.01},
+        ]
+        if prompt_key_param is not None:
+            param_groups.append({'params': [prompt_key_param], 'lr': self.args.prompt_key_lr})
+
         # Use Adam as standard
-        optimizer = torch.optim.Adam(params_to_optimize, lr=0.01) # Tuning might be needed
+        optimizer = torch.optim.Adam(param_groups) # Tuning might be needed
         return optimizer
 
     def train(self, train_loader, val_loader, val_original=None, task_num=0, ref_model=None):
@@ -130,9 +145,15 @@ class L2P_Trainer:
             return g
         
         def freeze_grad_hook_keys(grad):
-            """Freeze ALL prompt keys to prevent router drift (Strategy 3)"""
-            # Return zero gradient for all keys - they're initialized well via centroids
-            return torch.zeros_like(grad)
+            """Freeze old and future task prompt keys; allow current task keys to update."""
+            g = grad.clone()
+            # Zero out grads for old tasks
+            if start_idx > 0:
+                g[:start_idx] = 0
+            # Zero out grads for future tasks (though masked in fwd, safe to enforce)
+            if end_idx < g.shape[0]:
+                g[end_idx:] = 0
+            return g
             
         # Register hooks
         # Note: prompt and prompt_key are Parameters in HyperbolicPromptPool
@@ -176,10 +197,13 @@ class L2P_Trainer:
                 # Loss Calculation
                 ce_loss = self.criterion(logits, y)
                 pull_constraint = output['reduce_sim'] # Hyperbolic Distance
+                orth_loss = output.get('orth_loss', torch.tensor(0.0, device=self.device))
                 
                 # Total Loss = CE + lambda * Pull
                 # Lambda typically 0.1
                 loss = ce_loss + 0.1 * pull_constraint
+                if self.args.method == 'coda_prompt':
+                    loss = loss + self.args.orth_lambda * orth_loss
                 
                 loss.backward()
                 optimizer.step()
@@ -187,7 +211,12 @@ class L2P_Trainer:
                 tot_loss += loss.item() * x.size(0)
                 tot_size += x.size(0)
                 
-                pbar.set_postfix({'Loss': loss.item(), 'CE': ce_loss.item(), 'Pull': pull_constraint.item()})
+                pbar.set_postfix({
+                    'Loss': loss.item(),
+                    'CE': ce_loss.item(),
+                    'Pull': pull_constraint.item(),
+                    'Orth': orth_loss.item()
+                })
                 
             time_cost = time.time() - start_time
             avg_loss = tot_loss / tot_size
@@ -307,7 +336,8 @@ class L2P_Trainer:
         self.model.eval()
         
         # Metrics
-        correct_pred = 0 # Using predicted task
+        correct_pred = 0 # Using predicted task (top-1)
+        correct_pred_top2 = 0 # Using best of top-2 predicted tasks
         correct_oracle = 0 # Using true task (Oracle)
         correct_task = 0 # Task Prediction Accuracy
         total = 0
@@ -336,7 +366,8 @@ class L2P_Trainer:
                     backbone_feat = self.model.backbone(x)  # (B, D)
                     backbone_feat_norm = F.normalize(backbone_feat, p=2, dim=1)
                     task_sim = torch.matmul(backbone_feat_norm, task_centroid_tensor.T)
-                    predicted_tasks_indices = task_sim.argmax(dim=1)
+                    top2_indices = torch.topk(task_sim, k=min(2, task_sim.shape[1]), dim=1).indices
+                    predicted_tasks_indices = top2_indices[:, 0]
                     predicted_tasks = torch.tensor([task_ids[i] for i in predicted_tasks_indices.cpu().numpy()]).to(self.device)
                     
                     # Task Prediction Accuracy
@@ -344,6 +375,7 @@ class L2P_Trainer:
                     
                     # --- Step 2: Extract Features & NCM ---
                     feature_list_pred = []
+                    feature_list_pred_top2 = []
                     feature_list_oracle = []
                     
                     for i in range(x.size(0)):
@@ -353,6 +385,21 @@ class L2P_Trainer:
                         pred_t = predicted_tasks[i].item()
                         out_pred = self.model(sample, task_id=pred_t)
                         feature_list_pred.append(out_pred['embedding'])
+
+                        # A2) Top-2 Predicted Tasks: pick best by NCM similarity
+                        candidate_tasks = [task_ids[idx] for idx in top2_indices[i].cpu().numpy()]
+                        best_feat = None
+                        best_sim = None
+                        for cand_t in candidate_tasks:
+                            out_cand = self.model(sample, task_id=cand_t)
+                            feat_cand = out_cand['embedding']
+                            feat_cand_norm = F.normalize(feat_cand, p=2, dim=1)
+                            sims_cand = torch.matmul(feat_cand_norm, proto_tensor.T)
+                            max_sim = sims_cand.max().item()
+                            if best_sim is None or max_sim > best_sim:
+                                best_sim = max_sim
+                                best_feat = feat_cand
+                        feature_list_pred_top2.append(best_feat)
                         
                         # B) Oracle Task Prompt
                         true_t = true_task_ids[i].item()
@@ -364,12 +411,14 @@ class L2P_Trainer:
                         feature_list_oracle.append(out_oracle['embedding'])
                         
                     features_pred = torch.cat(feature_list_pred, dim=0)
+                    features_pred_top2 = torch.cat(feature_list_pred_top2, dim=0)
                     features_oracle = torch.cat(feature_list_oracle, dim=0)
                     
                 else:
                     # Fallback (No gating yet)
                     output = self.model(x, task_id=task_id)
                     features_pred = output['embedding']
+                    features_pred_top2 = features_pred
                     features_oracle = features_pred
                     
                 # --- Classification ---
@@ -380,6 +429,13 @@ class L2P_Trainer:
                 labels_pred = torch.tensor([stored_classes[i] for i in idx_pred.cpu().numpy()]).to(self.device)
                 correct_pred += (labels_pred == y).sum().item()
                 
+                # A2) Predicted Top-2 (best of top-2 tasks)
+                norm_feat_pred_top2 = F.normalize(features_pred_top2, p=2, dim=1)
+                sims_pred_top2 = torch.matmul(norm_feat_pred_top2, proto_tensor.T)
+                idx_pred_top2 = sims_pred_top2.argmax(dim=1)
+                labels_pred_top2 = torch.tensor([stored_classes[i] for i in idx_pred_top2.cpu().numpy()]).to(self.device)
+                correct_pred_top2 += (labels_pred_top2 == y).sum().item()
+
                 # B) Oracle
                 norm_feat_oracle = F.normalize(features_oracle, p=2, dim=1)
                 sims_oracle = torch.matmul(norm_feat_oracle, proto_tensor.T)
@@ -390,12 +446,14 @@ class L2P_Trainer:
                 total += y.size(0)
         
         acc_pred = correct_pred / total if total > 0 else 0
+        acc_pred_top2 = correct_pred_top2 / total if total > 0 else 0
         acc_oracle = correct_oracle / total if total > 0 else 0
         acc_task = correct_task / total if total > 0 else 0
         
         print(f"DIAGNOSTICS:")
         print(f"  [Predicted-Gated] NCM Accuracy: {acc_pred:.4f}")
+        print(f"  [Top2-Gated]      NCM Accuracy: {acc_pred_top2:.4f}")
         print(f"  [Oracle-Gated]    NCM Accuracy: {acc_oracle:.4f}")
         print(f"  [Task Prediction] Accuracy:     {acc_task:.4f}")
         
-        return acc_pred
+        return acc_pred_top2
