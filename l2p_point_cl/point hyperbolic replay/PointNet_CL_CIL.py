@@ -13,6 +13,7 @@ import datetime
 from dataloaders.modelnet import ModelNetDataLoader
 from methods.L2P_Trainer import L2P_Trainer
 from methods.lae_trainer import LAE_Trainer
+from methods.simple_trainer import SimpleTrainer
 
 def init_args():
     parser = argparse.ArgumentParser()
@@ -28,7 +29,7 @@ def init_args():
                         help='Prompt selection distance metric')
     parser.add_argument('--map_scale', type=float, default=0.1, help='Scale for expmap0 mapping into Poincare ball')
     parser.add_argument('--prompt_key_lr', type=float, default=0.001, help='Learning rate for prompt keys')
-    parser.add_argument('--method', type=str, default='l2p', choices=['l2p', 'lae_adapter_ncm', 'coda_prompt'],
+    parser.add_argument('--method', type=str, default='l2p', choices=['l2p', 'lae_adapter_ncm', 'coda_prompt', 'simple_baseline'],
                         help='Training method')
     parser.add_argument('--adapter_dim', type=int, default=128, help='Adapter bottleneck dimension')
     parser.add_argument('--ema_decay', type=float, default=0.99, help='EMA decay for offline adapter')
@@ -36,6 +37,7 @@ def init_args():
     parser.add_argument('--online_lr', type=float, default=0.01, help='Learning rate for online adapter/head')
     parser.add_argument('--distill_lambda', type=float, default=0.1, help='Weight for online-offline distillation')
     parser.add_argument('--orth_lambda', type=float, default=0.1, help='Weight for CODA prompt orthogonality loss')
+    parser.add_argument('--baseline_lr', type=float, default=0.001, help='Learning rate for simple baseline head')
     parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use (e.g., "0", "1", "2", "3")')
     parser.add_argument('--num_workers', type=int, default=4, help='Number of DataLoader workers (0 for Windows, 4-8 for Linux)')
     args = parser.parse_args()
@@ -135,6 +137,7 @@ if __name__ == '__main__':
     print(f"  map_scale: {args.map_scale}")
     print(f"  prompt_key_lr: {args.prompt_key_lr}")
     print(f"  orth_lambda: {args.orth_lambda}")
+    print(f"  baseline_lr: {args.baseline_lr}")
     
     # Class Order (Fixed for reproducibility)
     CATEGORY_ORDER = ['chair', 'sofa', 'airplane', 'bookshelf', 'bed', 'vase', 'monitor', 'table', 'toilet',
@@ -160,6 +163,8 @@ if __name__ == '__main__':
     # We init with MAX CLASSES (40) to avoid resizing classifier
     if args.method == 'lae_adapter_ncm':
         agent = LAE_Trainer(args, outdim=args.num_classes)
+    elif args.method == 'simple_baseline':
+        agent = SimpleTrainer(args, outdim=args.num_classes)
     else:
         agent = L2P_Trainer(args, outdim=args.num_classes)
     
@@ -191,7 +196,7 @@ if __name__ == '__main__':
             train_loader = get_modelnet_loader(args.dataroot, train_cats, split='train', batch_size=args.train_batch_size, label_remap=label_remap, num_workers=args.num_workers)
             val_loader = get_modelnet_loader(args.dataroot, val_cats, split='test', batch_size=args.val_batch_size, label_remap=label_remap, num_workers=args.num_workers)
             
-            if args.method != 'lae_adapter_ncm':
+            if args.method not in ['lae_adapter_ncm', 'simple_baseline']:
                 # Data-Driven Prompt Initialization
                 # Calculates task centroid and initializes current task's prompts
                 # This helps avoid "Winner-Takes-All" failure by placing new prompts close to new data
@@ -225,6 +230,9 @@ if __name__ == '__main__':
                     print(f"Prototype Drift [Offline]: mean cosine={drift_offline:.4f} over {count_offline} classes")
 
                 acc_ncm = agent.validation_ncm(val_loader, alpha=args.ensemble_alpha)
+            elif args.method == 'simple_baseline':
+                agent.class_means = agent.compute_prototypes(train_loader, existing=agent.class_means)
+                acc_ncm = agent.validation_ncm(val_loader)
             else:
                 # Compute Prototypes for NCM (Critical for CIL)
                 # Pass task_id for correct Prompt Masking during prototype generation

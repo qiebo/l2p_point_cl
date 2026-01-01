@@ -218,6 +218,22 @@
     -   `--orth_lambda`
     -   *位置*: `PointNet_CL_CIL.py`。
 
+### 3.9 Simple Baseline (Frozen Backbone + Linear Head + NCM)
+*用于验证最小可行流程，去除 prompt/gating/distill 等复杂组件。*
+
+-   **新增: SimplePointMLP**
+    -   *结构*: Frozen PointMLP Backbone + Linear Head。
+    -   *位置*: `models/simple_pointmlp.py`。
+
+-   **新增: SimpleTrainer**
+    -   *功能*: 只训练线性头，NCM 使用 backbone-only 特征构建原型。
+    -   *位置*: `methods/simple_trainer.py`。
+
+-   **新增: CLI 开关**
+    -   `--method simple_baseline`
+    -   `--baseline_lr`
+    -   *位置*: `PointNet_CL_CIL.py`。
+
 ---
 
 ## 4. 后续规划 (Future Work)
